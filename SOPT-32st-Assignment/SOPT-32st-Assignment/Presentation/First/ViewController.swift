@@ -9,7 +9,17 @@ import UIKit
 
 final class ViewController: UIViewController {
 
+    // MARK: - Properties
+    var viewModel: FirstViewModel!
+
     // MARK: - UI Components
+
+    private let countLabel: UILabel = {
+        let label = UILabel()
+        label.text = "0"
+        label.textColor = .black
+        return label
+    }()
 
     private let nameLabel: UILabel = {
         let label = UILabel()
@@ -29,30 +39,29 @@ final class ViewController: UIViewController {
         return textField
     }()
 
-    private lazy var presentButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("present!", for: .normal)
-        button.backgroundColor = .yellow
-        button.setTitleColor(.blue, for: .normal)
-
-        button.addTarget(
-            self,
-            action: #selector(presentButtonTapped),
-            for: .touchUpInside
-        )
+    private lazy var pressButton: UIButton = {
+        let action = UIAction { _ in
+            self.viewModel.didTapPressButton()
+        }
+        var config = UIButton.Configuration.filled()
+        config.title = "눌러 그냥"
+        config.background.backgroundColor = .systemPurple
+        config.baseForegroundColor = .white
+        let button = UIButton(configuration: config)
+        button.layer.cornerRadius = 5
+        button.addAction(action, for: .touchUpInside)
         return button
     }()
 
     private lazy var pushButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("push!", for: .normal)
-        button.backgroundColor = .yellow
-        button.setTitleColor(.blue, for: .normal)
-        button.addTarget(
-            self,
-            action: #selector(pushButtonTapped),
-            for: .touchUpInside
-        )
+        let action = UIAction {_ in
+            self.pushToSecondViewController()
+        }
+        var config = UIButton.Configuration.tinted()
+        config.background.backgroundColor = .yellow
+        config.title = "PUSH"
+        config.baseForegroundColor = .blue
+        let button = UIButton(configuration: config, primaryAction: action)
         return button
     }()
 
@@ -62,6 +71,11 @@ final class ViewController: UIViewController {
         super.viewDidLoad()
         style()
         setLayout()
+        bind(with: viewModel)
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        nameTextField.text?.removeAll()
     }
 }
 
@@ -76,14 +90,20 @@ private extension ViewController {
     func setLayout() {
 
         [
+            countLabel,
             nameLabel,
             nameTextField,
-            presentButton,
+            pressButton,
             pushButton
         ].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
         }
+
+        NSLayoutConstraint.activate([
+            countLabel.centerXAnchor.constraint(equalTo: nameLabel.centerXAnchor),
+            countLabel.bottomAnchor.constraint(equalTo: nameLabel.topAnchor, constant: -30)
+        ])
 
         NSLayoutConstraint.activate(
             [nameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 300),
@@ -99,14 +119,14 @@ private extension ViewController {
         )
 
         NSLayoutConstraint.activate(
-            [presentButton.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 20),
-             presentButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-             presentButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-             presentButton.heightAnchor.constraint(equalToConstant: 48)]
+            [pressButton.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 20),
+             pressButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+             pressButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+             pressButton.heightAnchor.constraint(equalToConstant: 48)]
         )
 
         NSLayoutConstraint.activate(
-            [pushButton.topAnchor.constraint(equalTo: presentButton.bottomAnchor, constant: 20),
+            [pushButton.topAnchor.constraint(equalTo: pressButton.bottomAnchor, constant: 20),
              pushButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
              pushButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
              pushButton.heightAnchor.constraint(equalToConstant: 48)]
@@ -125,18 +145,15 @@ private extension ViewController {
 
     func pushToSecondViewController() {
         guard let name = nameTextField.text else { return }
-        let secondViewController = SecondViewController()
+        let secondViewController = ModuleFactory.shared.makeSecondViewController()
         secondViewController.dataBind(name: name)
         self.navigationController?.pushViewController(secondViewController, animated: true)
     }
 
-    @objc
-    func presentButtonTapped() {
-        presentToSecondViewController()
-    }
-
-    @objc
-    func pushButtonTapped() {
-        pushToSecondViewController()
+    func bind(with viewModel: FirstViewModel) {
+        viewModel.count
+            .subscribe(on: self) { [weak self] text in
+                self?.countLabel.text = text
+            }
     }
 }

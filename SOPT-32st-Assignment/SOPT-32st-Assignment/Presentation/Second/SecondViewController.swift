@@ -14,6 +14,8 @@ final class SecondViewController: UIViewController {
 
     // MARK: - UI Components
 
+    private let imageView = UIImageView()
+
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "제 이름은요!"
@@ -52,10 +54,17 @@ private extension SecondViewController {
     }
 
     func setLayout() {
-        [nameLabel, backButton].forEach {
+        [imageView, nameLabel, backButton].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
         }
+
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            imageView.heightAnchor.constraint(equalToConstant: 300)
+        ])
 
         NSLayoutConstraint.activate(
             [nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -77,7 +86,12 @@ private extension SecondViewController {
 extension SecondViewController {
 
     func dataBind(name: String) {
-        nameLabel.text = name
+        if name.isEmpty {
+            nameLabel.text = "누구세요?"
+        } else {
+            nameLabel.text = name
+            imageView.image = UIImage(named: "dev")
+        }
     }
 
     @objc
