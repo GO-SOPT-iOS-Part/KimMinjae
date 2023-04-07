@@ -13,6 +13,9 @@
 		B598C03129DF4D8400FDEF04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B598C03029DF4D8400FDEF04 /* Assets.xcassets */; };
 		B598C03429DF4D8400FDEF04 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B598C03229DF4D8400FDEF04 /* LaunchScreen.storyboard */; };
 		B598C03C29DF4F6D00FDEF04 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598C03B29DF4F6D00FDEF04 /* SecondViewController.swift */; };
+		B598C03E29DF52D900FDEF04 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598C03D29DF52D900FDEF04 /* Observable.swift */; };
+		B598C04129DF58A000FDEF04 /* firstViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598C04029DF58A000FDEF04 /* firstViewModel.swift */; };
+		B598C04629DF6FEF00FDEF04 /* ModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598C04529DF6FEF00FDEF04 /* ModuleFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		B598C03329DF4D8400FDEF04 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B598C03529DF4D8400FDEF04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B598C03B29DF4F6D00FDEF04 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		B598C03D29DF52D900FDEF04 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		B598C04029DF58A000FDEF04 /* firstViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = firstViewModel.swift; sourceTree = "<group>"; };
+		B598C04529DF6FEF00FDEF04 /* ModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +62,66 @@
 		B598C02629DF4D8200FDEF04 /* SOPT-32st-Assignment */ = {
 			isa = PBXGroup;
 			children = (
-				B598C02729DF4D8200FDEF04 /* AppDelegate.swift */,
-				B598C02929DF4D8200FDEF04 /* SceneDelegate.swift */,
-				B598C02B29DF4D8200FDEF04 /* ViewController.swift */,
-				B598C03029DF4D8400FDEF04 /* Assets.xcassets */,
-				B598C03229DF4D8400FDEF04 /* LaunchScreen.storyboard */,
-				B598C03B29DF4F6D00FDEF04 /* SecondViewController.swift */,
+				B598C04B29DFCE2700FDEF04 /* Utils */,
+				B598C04A29DFCDF600FDEF04 /* Global */,
+				B598C04829DFCDD200FDEF04 /* Presentation */,
+				B598C04729DFCDB100FDEF04 /* Application */,
 				B598C03529DF4D8400FDEF04 /* Info.plist */,
 			);
 			path = "SOPT-32st-Assignment";
+			sourceTree = "<group>";
+		};
+		B598C04429DF5E5A00FDEF04 /* First */ = {
+			isa = PBXGroup;
+			children = (
+				B598C02B29DF4D8200FDEF04 /* ViewController.swift */,
+				B598C04029DF58A000FDEF04 /* firstViewModel.swift */,
+			);
+			path = First;
+			sourceTree = "<group>";
+		};
+		B598C04729DFCDB100FDEF04 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				B598C04529DF6FEF00FDEF04 /* ModuleFactory.swift */,
+				B598C02729DF4D8200FDEF04 /* AppDelegate.swift */,
+				B598C02929DF4D8200FDEF04 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		B598C04829DFCDD200FDEF04 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				B598C04429DF5E5A00FDEF04 /* First */,
+				B598C04929DFCDDB00FDEF04 /* Second */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		B598C04929DFCDDB00FDEF04 /* Second */ = {
+			isa = PBXGroup;
+			children = (
+				B598C03B29DF4F6D00FDEF04 /* SecondViewController.swift */,
+			);
+			path = Second;
+			sourceTree = "<group>";
+		};
+		B598C04A29DFCDF600FDEF04 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				B598C03229DF4D8400FDEF04 /* LaunchScreen.storyboard */,
+				B598C03029DF4D8400FDEF04 /* Assets.xcassets */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
+		B598C04B29DFCE2700FDEF04 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B598C03D29DF52D900FDEF04 /* Observable.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +195,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B598C03C29DF4F6D00FDEF04 /* SecondViewController.swift in Sources */,
+				B598C04129DF58A000FDEF04 /* firstViewModel.swift in Sources */,
+				B598C03E29DF52D900FDEF04 /* Observable.swift in Sources */,
 				B598C02C29DF4D8200FDEF04 /* ViewController.swift in Sources */,
+				B598C04629DF6FEF00FDEF04 /* ModuleFactory.swift in Sources */,
 				B598C02829DF4D8200FDEF04 /* AppDelegate.swift in Sources */,
 				B598C02A29DF4D8200FDEF04 /* SceneDelegate.swift in Sources */,
 			);
