@@ -18,9 +18,8 @@ final class ModuleFactory: ModuleFactoryProtocol {
     private init() {}
 
     func makeFirstViewController() -> ViewController {
-        let viewController = ViewController()
         let viewModel: FirstViewModel = DefaultFirstViewModel()
-        viewController.viewModel = viewModel
+        let viewController = ViewController(viewModel: viewModel)
         return viewController
     }
 

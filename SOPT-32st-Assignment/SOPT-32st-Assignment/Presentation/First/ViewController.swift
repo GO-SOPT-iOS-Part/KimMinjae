@@ -10,7 +10,7 @@ import UIKit
 final class ViewController: UIViewController {
 
     // MARK: - Properties
-    var viewModel: FirstViewModel!
+    private var viewModel: FirstViewModel
 
     // MARK: - UI Components
 
@@ -66,6 +66,15 @@ final class ViewController: UIViewController {
     }()
 
     // MARK: - View Life Cycle
+
+    init(viewModel: FirstViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
