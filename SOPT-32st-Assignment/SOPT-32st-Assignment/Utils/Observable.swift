@@ -8,10 +8,10 @@
 import Foundation
 
 
-final class Observable<T> {
+struct Observable<T> {
 
     struct Observer<T> {
-        weak var observer: AnyObject? // Observer
+        let uuid: UUID
         let block: (T) -> Void // Observer가 subscribe하면서 등록한 작업
     }
 
@@ -34,18 +34,18 @@ final class Observable<T> {
         }
     }
 
-    func subscribe(on observer: AnyObject, block: @escaping (T) -> Void) {
+    mutating func subscribe(on observerId: UUID, block: @escaping (T) -> Void) {
         // Observers배열에 observer 작업과 함께 추가하고
         observers.append(
-            Observer(observer: observer, block: block)
+            Observer(uuid: observerId, block: block)
         )
         // 작업 수행
         block(value)
     }
 
-    func remove(observer: AnyObject) {
+    mutating func remove(observerId: UUID) {
         observers = observers.filter({
-            $0.observer !== observer
+            $0.uuid != observerId
         })
     }
 }

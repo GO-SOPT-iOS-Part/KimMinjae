@@ -14,7 +14,7 @@ protocol FirstViewModelInput {
 
 
 protocol FirstViewModelOutput {
-    var count: Observable<String> { get }
+    var count: Observable<String> { get set }
 }
 
 
@@ -23,9 +23,6 @@ protocol FirstViewModel: FirstViewModelInput, FirstViewModelOutput {}
 final class DefaultFirstViewModel: FirstViewModel {
 
     var count: Observable<String> = Observable("0")
-
-
-
 
     private func updateCount() {
         guard let curr = Int(count.value) else { return }

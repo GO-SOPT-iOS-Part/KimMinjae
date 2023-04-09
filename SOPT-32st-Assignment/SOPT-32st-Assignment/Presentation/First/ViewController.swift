@@ -8,6 +8,8 @@
 import UIKit
 
 final class ViewController: UIViewController {
+    
+    private let uuid = UUID()
 
     // MARK: - Properties
     private var viewModel: FirstViewModel
@@ -80,7 +82,7 @@ final class ViewController: UIViewController {
         super.viewDidLoad()
         style()
         setLayout()
-        bind(with: viewModel)
+        bind()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -160,10 +162,12 @@ private extension ViewController {
         self.navigationController?.pushViewController(secondViewController, animated: true)
     }
 
-    func bind(with viewModel: FirstViewModel) {
-        viewModel.count
-            .subscribe(on: self) { [weak self] text in
+    func bind() {
+        self.viewModel.count
+            .subscribe(on: self.uuid) { [weak self] text in
                 self?.countLabel.text = text
             }
+
+        self.viewModel.count.remove(observerId: self.uuid)
     }
 }
