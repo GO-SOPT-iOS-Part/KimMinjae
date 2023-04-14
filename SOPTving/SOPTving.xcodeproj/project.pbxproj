@@ -26,6 +26,10 @@
 		B598C0E529E83D3100FDEF04 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598C0E429E83D3100FDEF04 /* Color+.swift */; };
 		B598C0E829E83FBA00FDEF04 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B598C0E729E83FBA00FDEF04 /* SnapKit */; };
 		B598C0EA29E842B400FDEF04 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598C0E929E842B400FDEF04 /* LoginViewController.swift */; };
+		B598C0ED29E87AC700FDEF04 /* AuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598C0EC29E87AC700FDEF04 /* AuthTextField.swift */; };
+		B598C0F029E8970300FDEF04 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598C0EF29E8970300FDEF04 /* UIView+.swift */; };
+		B598C0F229E8975200FDEF04 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598C0F129E8975200FDEF04 /* UITextField+.swift */; };
+		B598C0F429E96CFD00FDEF04 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598C0F329E96CFD00FDEF04 /* WelcomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +53,10 @@
 		B598C0E229E82D3A00FDEF04 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		B598C0E429E83D3100FDEF04 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		B598C0E929E842B400FDEF04 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		B598C0EC29E87AC700FDEF04 /* AuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextField.swift; sourceTree = "<group>"; };
+		B598C0EF29E8970300FDEF04 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		B598C0F129E8975200FDEF04 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
+		B598C0F329E96CFD00FDEF04 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +94,7 @@
 				B598C0AE29E8070E00FDEF04 /* ViewController.swift */,
 				B598C0E929E842B400FDEF04 /* LoginViewController.swift */,
 				B598C0B829E8070F00FDEF04 /* Info.plist */,
+				B598C0F329E96CFD00FDEF04 /* WelcomeViewController.swift */,
 			);
 			path = SOPTving;
 			sourceTree = "<group>";
@@ -128,6 +137,8 @@
 		B598C0DE29E82B2D00FDEF04 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				B598C0EE29E896FA00FDEF04 /* Extensions */,
+				B598C0EB29E87AB400FDEF04 /* UIComponents */,
 				B598C0DF29E82B5B00FDEF04 /* Literal */,
 				B598C0DD29E82A9600FDEF04 /* Supprots */,
 				B598C0BE29E810AA00FDEF04 /* Resources */,
@@ -143,6 +154,23 @@
 				B598C0E429E83D3100FDEF04 /* Color+.swift */,
 			);
 			path = Literal;
+			sourceTree = "<group>";
+		};
+		B598C0EB29E87AB400FDEF04 /* UIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				B598C0EC29E87AC700FDEF04 /* AuthTextField.swift */,
+			);
+			path = UIComponents;
+			sourceTree = "<group>";
+		};
+		B598C0EE29E896FA00FDEF04 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B598C0EF29E8970300FDEF04 /* UIView+.swift */,
+				B598C0F129E8975200FDEF04 /* UITextField+.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,10 +259,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B598C0EA29E842B400FDEF04 /* LoginViewController.swift in Sources */,
+				B598C0F229E8975200FDEF04 /* UITextField+.swift in Sources */,
+				B598C0F429E96CFD00FDEF04 /* WelcomeViewController.swift in Sources */,
+				B598C0ED29E87AC700FDEF04 /* AuthTextField.swift in Sources */,
 				B598C0AF29E8070E00FDEF04 /* ViewController.swift in Sources */,
 				B598C0E529E83D3100FDEF04 /* Color+.swift in Sources */,
 				B598C0E129E82B6B00FDEF04 /* ImageLiterals.swift in Sources */,
 				B598C0AB29E8070E00FDEF04 /* AppDelegate.swift in Sources */,
+				B598C0F029E8970300FDEF04 /* UIView+.swift in Sources */,
 				B598C0E329E82D3A00FDEF04 /* UIFont+.swift in Sources */,
 				B598C0AD29E8070E00FDEF04 /* SceneDelegate.swift in Sources */,
 			);
