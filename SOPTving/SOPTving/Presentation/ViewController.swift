@@ -19,7 +19,9 @@ final class ViewController: UIViewController {
         let button = UIButton(configuration: config)
 
         let action = UIAction { _ in
-            self.navigationController?.pushViewController(LoginViewController(), animated: false)
+            let loginVC = ModuleFactory.shared.makeLoginViewController()
+            self.navigationController?
+                .pushViewController(loginVC, animated: false)
         }
         button.addAction(action, for: .touchUpInside)
         return button
