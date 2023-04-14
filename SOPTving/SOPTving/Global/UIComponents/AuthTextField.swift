@@ -58,6 +58,8 @@ final class AuthTextField: UITextField {
 
     private var textFieldType : AuthTextFieldType
 
+    var completion: ((String) -> Void)?
+
     // MARK: - UI Components
 
     private lazy var clearButton: UIButton = {
@@ -102,7 +104,7 @@ final class AuthTextField: UITextField {
             top: 0,
             left: 8,
             bottom: 0,
-            right: 20
+            right: 16
         )
         stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
@@ -162,7 +164,7 @@ private extension AuthTextField {
 
     func setLayout() {
         rightView?.snp.makeConstraints { make in
-            make.width.lessThanOrEqualTo(98)
+            make.width.lessThanOrEqualTo(90)
         }
     }
 
@@ -216,6 +218,7 @@ extension AuthTextField: UITextFieldDelegate {
 
     func textFieldDidChangeSelection(_ textField: UITextField) {
         guard let text = self.text else { return }
+        completion?(text)
         if text.isEmpty {
             hideClearButton()
         } else {
