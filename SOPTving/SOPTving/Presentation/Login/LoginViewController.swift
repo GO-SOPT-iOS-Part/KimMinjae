@@ -14,6 +14,8 @@ final class LoginViewController: UIViewController {
 
     private var email: String?
 
+    private var nickname: String?
+
     // MARK: - UI Components
 
     private let loginLabel: UILabel = {
@@ -62,9 +64,13 @@ final class LoginViewController: UIViewController {
         config.baseForegroundColor = .tvingGray2
         let button = UIButton(configuration: config)
         let action = UIAction { _ in
-            guard let email = self.email else { return }
             let welcomeVC = WelcomeViewController()
-            welcomeVC.dataBind(nameOrEmail: email)
+            if let nickname = self.nickname {
+                welcomeVC.dataBind(nameOrEmail: nickname)
+            } else {
+                guard let email = self.email else { return }
+                welcomeVC.dataBind(nameOrEmail: email)
+            }
             self.navigationController?.pushViewController(welcomeVC, animated: true)
         }
         button.addAction(action, for: .touchUpInside)
@@ -124,7 +130,7 @@ final class LoginViewController: UIViewController {
         return label
     }()
 
-    private let createAccountButton: UIButton = {
+    private lazy var createAccountButton: UIButton = {
         var config = UIButton.Configuration.plain()
         var titleAttr = AttributedString("닉네임 만들러가기")
         titleAttr.font = .font(.pretendardRegular, ofSize: 14)
@@ -134,6 +140,18 @@ final class LoginViewController: UIViewController {
         config.baseForegroundColor = .tvingGray2
         config.titleAlignment = .center
         let button = UIButton(configuration: config)
+
+        let action = UIAction { _ in
+            let bottomSheetVC = BottomSheetViewController()
+            bottomSheetVC.modalPresentationStyle = .overFullScreen
+            bottomSheetVC.completion = { nickname in
+                self.nickname = nickname
+            }
+            self.present(bottomSheetVC, animated: false) {
+                bottomSheetVC.showBottomSheetWithAnimation()
+            }
+        }
+        button.addAction(action, for: .touchUpInside)
         button.titleLabel?.numberOfLines = 1
         button.setUnderline()
         return button
@@ -171,6 +189,11 @@ final class LoginViewController: UIViewController {
         setNavigationItem()
         setLayout()
         bind()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = false
     }
 }
 
