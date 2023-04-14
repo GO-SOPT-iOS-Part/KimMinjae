@@ -30,6 +30,11 @@
 		B598C0F029E8970300FDEF04 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598C0EF29E8970300FDEF04 /* UIView+.swift */; };
 		B598C0F229E8975200FDEF04 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598C0F129E8975200FDEF04 /* UITextField+.swift */; };
 		B598C0F429E96CFD00FDEF04 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598C0F329E96CFD00FDEF04 /* WelcomeViewController.swift */; };
+		B598C0F629E9BA0700FDEF04 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598C0F529E9BA0700FDEF04 /* UIButton+.swift */; };
+		B598C0FA29E9BD4400FDEF04 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598C0F929E9BD4400FDEF04 /* LoginViewModel.swift */; };
+		B598C0FC29E9BE3A00FDEF04 /* LoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598C0FB29E9BE3A00FDEF04 /* LoginUseCase.swift */; };
+		B598C0FE29E9C58700FDEF04 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598C0FD29E9C58700FDEF04 /* String+.swift */; };
+		B598C10029E9D35E00FDEF04 /* ModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598C0FF29E9D35E00FDEF04 /* ModuleFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +62,11 @@
 		B598C0EF29E8970300FDEF04 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		B598C0F129E8975200FDEF04 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 		B598C0F329E96CFD00FDEF04 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		B598C0F529E9BA0700FDEF04 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
+		B598C0F929E9BD4400FDEF04 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		B598C0FB29E9BE3A00FDEF04 /* LoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
+		B598C0FD29E9C58700FDEF04 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		B598C0FF29E9D35E00FDEF04 /* ModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,11 +100,9 @@
 		B598C0A929E8070E00FDEF04 /* SOPTving */ = {
 			isa = PBXGroup;
 			children = (
+				B598C0F729E9BCDF00FDEF04 /* Presentation */,
 				B598C0DE29E82B2D00FDEF04 /* Global */,
-				B598C0AE29E8070E00FDEF04 /* ViewController.swift */,
-				B598C0E929E842B400FDEF04 /* LoginViewController.swift */,
 				B598C0B829E8070F00FDEF04 /* Info.plist */,
-				B598C0F329E96CFD00FDEF04 /* WelcomeViewController.swift */,
 			);
 			path = SOPTving;
 			sourceTree = "<group>";
@@ -142,6 +150,7 @@
 				B598C0DF29E82B5B00FDEF04 /* Literal */,
 				B598C0DD29E82A9600FDEF04 /* Supprots */,
 				B598C0BE29E810AA00FDEF04 /* Resources */,
+				B598C0FF29E9D35E00FDEF04 /* ModuleFactory.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -169,8 +178,30 @@
 			children = (
 				B598C0EF29E8970300FDEF04 /* UIView+.swift */,
 				B598C0F129E8975200FDEF04 /* UITextField+.swift */,
+				B598C0F529E9BA0700FDEF04 /* UIButton+.swift */,
+				B598C0FD29E9C58700FDEF04 /* String+.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B598C0F729E9BCDF00FDEF04 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				B598C0F329E96CFD00FDEF04 /* WelcomeViewController.swift */,
+				B598C0AE29E8070E00FDEF04 /* ViewController.swift */,
+				B598C0F829E9BD2F00FDEF04 /* Login */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		B598C0F829E9BD2F00FDEF04 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				B598C0E929E842B400FDEF04 /* LoginViewController.swift */,
+				B598C0F929E9BD4400FDEF04 /* LoginViewModel.swift */,
+				B598C0FB29E9BE3A00FDEF04 /* LoginUseCase.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,8 +296,13 @@
 				B598C0AF29E8070E00FDEF04 /* ViewController.swift in Sources */,
 				B598C0E529E83D3100FDEF04 /* Color+.swift in Sources */,
 				B598C0E129E82B6B00FDEF04 /* ImageLiterals.swift in Sources */,
+				B598C0FE29E9C58700FDEF04 /* String+.swift in Sources */,
+				B598C0F629E9BA0700FDEF04 /* UIButton+.swift in Sources */,
+				B598C0FA29E9BD4400FDEF04 /* LoginViewModel.swift in Sources */,
 				B598C0AB29E8070E00FDEF04 /* AppDelegate.swift in Sources */,
 				B598C0F029E8970300FDEF04 /* UIView+.swift in Sources */,
+				B598C10029E9D35E00FDEF04 /* ModuleFactory.swift in Sources */,
+				B598C0FC29E9BE3A00FDEF04 /* LoginUseCase.swift in Sources */,
 				B598C0E329E82D3A00FDEF04 /* UIFont+.swift in Sources */,
 				B598C0AD29E8070E00FDEF04 /* SceneDelegate.swift in Sources */,
 			);
