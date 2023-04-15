@@ -5,26 +5,25 @@
 //  Created by 김민재 on 2023/04/15.
 //
 
-import Foundation
+import UIKit
 
 protocol ModuleFactoryProtocol {
-    func makeLoginViewController() -> LoginViewController
-    func makeWelcomeViewController() -> WelcomeViewController
-
+    func makeLoginViewController() -> UIViewController
+    func makeWelcomeViewController() -> UIViewController
 }
 
 final class ModuleFactory: ModuleFactoryProtocol {
     static let shared = ModuleFactory()
     private init() {}
 
-    func makeLoginViewController() -> LoginViewController {
+    func makeLoginViewController() -> UIViewController {
         let useCase = LoginUseCase()
         let viewModel: LoginViewModel = DefaultLoginViewModel(useCase: useCase)
         let viewController = LoginViewController(viewModel: viewModel)
         return viewController
     }
 
-    func makeWelcomeViewController() -> WelcomeViewController {
+    func makeWelcomeViewController() -> UIViewController {
         let viewController = WelcomeViewController()
         return viewController
     }
