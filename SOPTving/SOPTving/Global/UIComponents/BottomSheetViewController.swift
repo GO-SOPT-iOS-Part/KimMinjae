@@ -10,6 +10,10 @@ import UIKit
 final class BottomSheetViewController: UIViewController {
 
     // MARK: - Properties
+    private var viewTranslation: CGPoint = .init(x: 0, y: 0)
+
+    private var viewVelocity: CGPoint = .init(x: 0, y: 0)
+
     typealias handler = ((String) -> Void)
     var completion: handler?
 
@@ -63,14 +67,7 @@ final class BottomSheetViewController: UIViewController {
         super.viewDidLoad()
         style()
         setLayout()
-    }
-
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        if let touch = touches.first,
-           touch.view == self.view {
-            hideBottomSheetWithAnimation()
-        }
+        addGestureInView()
     }
 }
 
@@ -92,7 +89,6 @@ private extension BottomSheetViewController {
             make.top.equalTo(self.view.snp.bottom)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(UIScreen.main.bounds.height / 2)
-
         }
 
         titleLabel.snp.makeConstraints { make in
@@ -123,6 +119,14 @@ private extension BottomSheetViewController {
 // MARK: - Methods
 
 extension BottomSheetViewController {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        if let touch = touches.first,
+           touch.view == self.view {
+            hideBottomSheetWithAnimation()
+        }
+    }
+
     func showBottomSheetWithAnimation() {
         UIView.animate(withDuration: 0.8, delay: 0) {
             self.containerView.transform = CGAffineTransform(translationX: 0, y: -self.containerView.frame.height)
@@ -135,6 +139,48 @@ extension BottomSheetViewController {
             self.view.alpha = 0
         } completion: { _ in
             self.dismiss(animated: false)
+        }
+    }
+
+    private func addGestureInView() {
+        let gesture = UIPanGestureRecognizer(
+            target: self,
+            action: #selector(didMove(_:))
+        )
+        containerView.addGestureRecognizer(gesture)
+    }
+
+    @objc
+    private func didMove(_ sender: UIPanGestureRecognizer) {
+        viewTranslation = sender.translation(in: containerView)
+        print(viewTranslation)
+        viewVelocity = sender.translation(in: containerView)
+        switch sender.state {
+        case .changed:
+            if viewTranslation.y > 0 {
+                UIView.animate(withDuration: 0.1) {
+                    self.containerView.transform = CGAffineTransform(
+                        translationX: 0,
+                        y: -self.containerView.frame.height + self.viewTranslation.y
+                    )
+                }
+            }
+        case .ended:
+            if viewTranslation.y < containerView.frame.height / 2 {
+                UIView.animate(withDuration: 0.1) {
+                    self.containerView.transform = CGAffineTransform(
+                        translationX: 0,
+                        y: -self.containerView.frame.height)
+                }
+            } else {
+                UIView.animate(withDuration: 0.1) {
+                    self.containerView.transform = .identity
+                } completion: { _ in
+                    self.dismiss(animated: false)
+                }
+            }
+        default:
+            break
         }
     }
 }
