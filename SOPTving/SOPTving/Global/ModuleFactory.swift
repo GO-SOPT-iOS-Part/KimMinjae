@@ -17,7 +17,7 @@ final class ModuleFactory: ModuleFactoryProtocol {
     private init() {}
 
     func makeLoginViewController() -> UIViewController {
-        let useCase = LoginUseCase()
+        let useCase = DefaultLoginUseCase()
         let viewModel: LoginViewModel = DefaultLoginViewModel(useCase: useCase)
         let viewController = LoginViewController(viewModel: viewModel)
         return viewController

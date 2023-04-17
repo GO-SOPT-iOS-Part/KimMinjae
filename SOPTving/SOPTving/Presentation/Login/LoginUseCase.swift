@@ -7,8 +7,13 @@
 
 import Foundation
 
+protocol LoginUseCase {
+    func checkIsValidEmail(email: String) -> Bool
+    func checkIsValidPassword(password: String) -> Bool
+}
 
-final class LoginUseCase {
+
+final class DefaultLoginUseCase: LoginUseCase {
 
     func checkIsValidEmail(email: String) -> Bool {
         return email.isValidEmail()

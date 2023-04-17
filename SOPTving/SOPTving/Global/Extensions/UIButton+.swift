@@ -8,6 +8,7 @@
 import UIKit
 
 extension UIButton {
+    // Button Configuration 쓰면 이거 안먹음. AttributedString으로 대체가능
     func setUnderline() {
         guard let title = title(for: .normal) else { return }
         let attributedString = NSMutableAttributedString(string: title)

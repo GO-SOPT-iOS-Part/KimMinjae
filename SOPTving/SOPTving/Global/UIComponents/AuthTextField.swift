@@ -131,6 +131,7 @@ private extension AuthTextField {
     func config() {
         style()
         delegate = self
+        self.autocapitalizationType = .none
         isSecureTextEntry = textFieldType.isSecure
         self.placeholder = textFieldType.placeholder
         setPlaceholderColor(.tvingGray2)
