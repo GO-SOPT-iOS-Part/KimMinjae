@@ -12,8 +12,6 @@ final class BottomSheetViewController: UIViewController {
     // MARK: - Properties
     private var viewTranslation: CGPoint = .init(x: 0, y: 0)
 
-    private var viewVelocity: CGPoint = .init(x: 0, y: 0)
-
     typealias handler = ((String) -> Void)
     var completion: handler?
 
@@ -153,8 +151,6 @@ extension BottomSheetViewController {
     @objc
     private func didMove(_ sender: UIPanGestureRecognizer) {
         viewTranslation = sender.translation(in: containerView)
-        print(viewTranslation)
-        viewVelocity = sender.translation(in: containerView)
         switch sender.state {
         case .changed:
             if viewTranslation.y > 0 {
