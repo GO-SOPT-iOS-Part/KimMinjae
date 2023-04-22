@@ -199,7 +199,6 @@ private extension AuthTextField {
     }
 
     func showClearButton() {
-        if clearButton.isHidden { clearButton.isHidden = false }
         clearButton.alpha = 1
         clearButton.isUserInteractionEnabled = true
     }
