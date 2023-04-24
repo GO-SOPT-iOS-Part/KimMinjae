@@ -39,6 +39,7 @@
 		B5DAE61B29F681F90090F25C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE61A29F681F90090F25C /* BaseViewController.swift */; };
 		B5DAE61D29F682020090F25C /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE61C29F682020090F25C /* BaseView.swift */; };
 		B5DAE61F29F682290090F25C /* NSObject+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE61E29F682290090F25C /* NSObject+.swift */; };
+		B5DAE62829F685000090F25C /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = B5DAE62729F685000090F25C /* Then */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +84,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B598C0E829E83FBA00FDEF04 /* SnapKit in Frameworks */,
+				B5DAE62829F685000090F25C /* Then in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,6 +244,7 @@
 			name = SOPTving;
 			packageProductDependencies = (
 				B598C0E729E83FBA00FDEF04 /* SnapKit */,
+				B5DAE62729F685000090F25C /* Then */,
 			);
 			productName = SOPTving;
 			productReference = B598C0A729E8070E00FDEF04 /* SOPTving.app */;
@@ -273,6 +276,7 @@
 			mainGroup = B598C09E29E8070E00FDEF04;
 			packageReferences = (
 				B598C0E629E83FBA00FDEF04 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				B5DAE62629F685000090F25C /* XCRemoteSwiftPackageReference "Then" */,
 			);
 			productRefGroup = B598C0A829E8070E00FDEF04 /* Products */;
 			projectDirPath = "";
@@ -546,6 +550,14 @@
 				kind = branch;
 			};
 		};
+		B5DAE62629F685000090F25C /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -553,6 +565,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B598C0E629E83FBA00FDEF04 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		B5DAE62729F685000090F25C /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5DAE62629F685000090F25C /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
