@@ -36,6 +36,9 @@
 		B598C0FE29E9C58700FDEF04 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598C0FD29E9C58700FDEF04 /* String+.swift */; };
 		B598C10029E9D35E00FDEF04 /* ModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598C0FF29E9D35E00FDEF04 /* ModuleFactory.swift */; };
 		B598C10229E9D60100FDEF04 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598C10129E9D60100FDEF04 /* BottomSheetViewController.swift */; };
+		B5DAE61B29F681F90090F25C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE61A29F681F90090F25C /* BaseViewController.swift */; };
+		B5DAE61D29F682020090F25C /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE61C29F682020090F25C /* BaseView.swift */; };
+		B5DAE61F29F682290090F25C /* NSObject+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE61E29F682290090F25C /* NSObject+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +72,9 @@
 		B598C0FD29E9C58700FDEF04 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		B598C0FF29E9D35E00FDEF04 /* ModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFactory.swift; sourceTree = "<group>"; };
 		B598C10129E9D60100FDEF04 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
+		B5DAE61A29F681F90090F25C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		B5DAE61C29F682020090F25C /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		B5DAE61E29F682290090F25C /* NSObject+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +153,7 @@
 		B598C0DE29E82B2D00FDEF04 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				B5DAE61929F681E70090F25C /* Base */,
 				B598C0EE29E896FA00FDEF04 /* Extensions */,
 				B598C0EB29E87AB400FDEF04 /* UIComponents */,
 				B598C0DF29E82B5B00FDEF04 /* Literal */,
@@ -183,6 +190,7 @@
 				B598C0F129E8975200FDEF04 /* UITextField+.swift */,
 				B598C0F529E9BA0700FDEF04 /* UIButton+.swift */,
 				B598C0FD29E9C58700FDEF04 /* String+.swift */,
+				B5DAE61E29F682290090F25C /* NSObject+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -205,6 +213,15 @@
 				B598C0FB29E9BE3A00FDEF04 /* LoginUseCase.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		B5DAE61929F681E70090F25C /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				B5DAE61A29F681F90090F25C /* BaseViewController.swift */,
+				B5DAE61C29F682020090F25C /* BaseView.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -297,6 +314,8 @@
 				B598C0F429E96CFD00FDEF04 /* WelcomeViewController.swift in Sources */,
 				B598C0ED29E87AC700FDEF04 /* AuthTextField.swift in Sources */,
 				B598C0AF29E8070E00FDEF04 /* ViewController.swift in Sources */,
+				B5DAE61F29F682290090F25C /* NSObject+.swift in Sources */,
+				B5DAE61B29F681F90090F25C /* BaseViewController.swift in Sources */,
 				B598C0E529E83D3100FDEF04 /* Color+.swift in Sources */,
 				B598C0E129E82B6B00FDEF04 /* ImageLiterals.swift in Sources */,
 				B598C0FE29E9C58700FDEF04 /* String+.swift in Sources */,
@@ -307,6 +326,7 @@
 				B598C10229E9D60100FDEF04 /* BottomSheetViewController.swift in Sources */,
 				B598C10029E9D35E00FDEF04 /* ModuleFactory.swift in Sources */,
 				B598C0FC29E9BE3A00FDEF04 /* LoginUseCase.swift in Sources */,
+				B5DAE61D29F682020090F25C /* BaseView.swift in Sources */,
 				B598C0E329E82D3A00FDEF04 /* UIFont+.swift in Sources */,
 				B598C0AD29E8070E00FDEF04 /* SceneDelegate.swift in Sources */,
 			);
