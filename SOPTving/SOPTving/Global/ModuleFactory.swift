@@ -10,6 +10,7 @@ import UIKit
 protocol ModuleFactoryProtocol {
     func makeLoginViewController() -> UIViewController
     func makeWelcomeViewController() -> UIViewController
+    func makeMyPageViewController() -> UIViewController
 }
 
 final class ModuleFactory: ModuleFactoryProtocol {
@@ -25,6 +26,12 @@ final class ModuleFactory: ModuleFactoryProtocol {
 
     func makeWelcomeViewController() -> UIViewController {
         let viewController = WelcomeViewController()
+        return viewController
+    }
+
+    func makeMyPageViewController() -> UIViewController {
+        let viewModel = MyPageViewModel()
+        let viewController = MyPageViewController(viewModel: viewModel)
         return viewController
     }
 }

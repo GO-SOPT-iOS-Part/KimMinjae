@@ -25,6 +25,7 @@ struct ImageLiterals {
         static var jtbcLogo: UIImage { .load(named: "jtbcLogo") }
         static var tvnLogo: UIImage { .load(named: "tvnLogo") }
         static var setting: UIImage { .load(named: "setting") }
+        static var nextArrow: UIImage { .load(named: "nextArrow") }
     }
 
     struct Main {

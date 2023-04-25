@@ -47,4 +47,8 @@ extension UIColor {
         return UIColor(r: 46, g: 46, b: 46)
     }
 
+    @nonobjc class var tvingGray5: UIColor {
+        return UIColor(r: 25, g: 25, b: 25)
+    }
+
 }

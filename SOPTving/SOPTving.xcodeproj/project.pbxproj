@@ -39,7 +39,17 @@
 		B5DAE61B29F681F90090F25C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE61A29F681F90090F25C /* BaseViewController.swift */; };
 		B5DAE61D29F682020090F25C /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE61C29F682020090F25C /* BaseView.swift */; };
 		B5DAE61F29F682290090F25C /* NSObject+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE61E29F682290090F25C /* NSObject+.swift */; };
+		B5DAE62229F684250090F25C /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE62129F684250090F25C /* MyPageViewController.swift */; };
 		B5DAE62829F685000090F25C /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = B5DAE62729F685000090F25C /* Then */; };
+		B5DAE62B29F68B0E0090F25C /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE62A29F68B0E0090F25C /* ProfileTableViewCell.swift */; };
+		B5DAE62D29F68B2D0090F25C /* MyPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE62C29F68B2D0090F25C /* MyPageTableViewCell.swift */; };
+		B5DAE64429F6DC920090F25C /* TvingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE64329F6DC910090F25C /* TvingButton.swift */; };
+		B5DAE64629F6F0070090F25C /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE64529F6F0070090F25C /* MyPageViewModel.swift */; };
+		B5DAE64929F6F5390090F25C /* SectionSeperatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE64829F6F5390090F25C /* SectionSeperatorView.swift */; };
+		B5DAE64B29F6F7800090F25C /* LogoutFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE64A29F6F7800090F25C /* LogoutFooterView.swift */; };
+		B5DAE64D29F6FA7E0090F25C /* MembershipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE64C29F6FA7E0090F25C /* MembershipView.swift */; };
+		B5DAE64F29F713E20090F25C /* LabelButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE64E29F713E20090F25C /* LabelButtonView.swift */; };
+		B5DAE65129F7299B0090F25C /* LogoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE65029F7299B0090F25C /* LogoutTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +86,16 @@
 		B5DAE61A29F681F90090F25C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		B5DAE61C29F682020090F25C /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		B5DAE61E29F682290090F25C /* NSObject+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+.swift"; sourceTree = "<group>"; };
+		B5DAE62129F684250090F25C /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		B5DAE62A29F68B0E0090F25C /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		B5DAE62C29F68B2D0090F25C /* MyPageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableViewCell.swift; sourceTree = "<group>"; };
+		B5DAE64329F6DC910090F25C /* TvingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TvingButton.swift; sourceTree = "<group>"; };
+		B5DAE64529F6F0070090F25C /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
+		B5DAE64829F6F5390090F25C /* SectionSeperatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionSeperatorView.swift; sourceTree = "<group>"; };
+		B5DAE64A29F6F7800090F25C /* LogoutFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutFooterView.swift; sourceTree = "<group>"; };
+		B5DAE64C29F6FA7E0090F25C /* MembershipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipView.swift; sourceTree = "<group>"; };
+		B5DAE64E29F713E20090F25C /* LabelButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelButtonView.swift; sourceTree = "<group>"; };
+		B5DAE65029F7299B0090F25C /* LogoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +201,7 @@
 			children = (
 				B598C0EC29E87AC700FDEF04 /* AuthTextField.swift */,
 				B598C10129E9D60100FDEF04 /* BottomSheetViewController.swift */,
+				B5DAE64329F6DC910090F25C /* TvingButton.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -200,6 +221,7 @@
 		B598C0F729E9BCDF00FDEF04 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				B5DAE62029F684160090F25C /* MyPage */,
 				B598C0F329E96CFD00FDEF04 /* WelcomeViewController.swift */,
 				B598C0AE29E8070E00FDEF04 /* ViewController.swift */,
 				B598C0F829E9BD2F00FDEF04 /* Login */,
@@ -224,6 +246,38 @@
 				B5DAE61C29F682020090F25C /* BaseView.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		B5DAE62029F684160090F25C /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				B5DAE64729F6F5180090F25C /* Views */,
+				B5DAE62929F6882C0090F25C /* Cells */,
+				B5DAE62129F684250090F25C /* MyPageViewController.swift */,
+				B5DAE64529F6F0070090F25C /* MyPageViewModel.swift */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
+		B5DAE62929F6882C0090F25C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B5DAE62A29F68B0E0090F25C /* ProfileTableViewCell.swift */,
+				B5DAE62C29F68B2D0090F25C /* MyPageTableViewCell.swift */,
+				B5DAE65029F7299B0090F25C /* LogoutTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		B5DAE64729F6F5180090F25C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B5DAE64829F6F5390090F25C /* SectionSeperatorView.swift */,
+				B5DAE64A29F6F7800090F25C /* LogoutFooterView.swift */,
+				B5DAE64C29F6FA7E0090F25C /* MembershipView.swift */,
+				B5DAE64E29F713E20090F25C /* LabelButtonView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,23 +368,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				B598C0EA29E842B400FDEF04 /* LoginViewController.swift in Sources */,
+				B5DAE64429F6DC920090F25C /* TvingButton.swift in Sources */,
 				B598C0F229E8975200FDEF04 /* UITextField+.swift in Sources */,
 				B598C0F429E96CFD00FDEF04 /* WelcomeViewController.swift in Sources */,
+				B5DAE62B29F68B0E0090F25C /* ProfileTableViewCell.swift in Sources */,
 				B598C0ED29E87AC700FDEF04 /* AuthTextField.swift in Sources */,
 				B598C0AF29E8070E00FDEF04 /* ViewController.swift in Sources */,
 				B5DAE61F29F682290090F25C /* NSObject+.swift in Sources */,
 				B5DAE61B29F681F90090F25C /* BaseViewController.swift in Sources */,
 				B598C0E529E83D3100FDEF04 /* Color+.swift in Sources */,
+				B5DAE62D29F68B2D0090F25C /* MyPageTableViewCell.swift in Sources */,
+				B5DAE65129F7299B0090F25C /* LogoutTableViewCell.swift in Sources */,
 				B598C0E129E82B6B00FDEF04 /* ImageLiterals.swift in Sources */,
 				B598C0FE29E9C58700FDEF04 /* String+.swift in Sources */,
 				B598C0F629E9BA0700FDEF04 /* UIButton+.swift in Sources */,
 				B598C0FA29E9BD4400FDEF04 /* LoginViewModel.swift in Sources */,
 				B598C0AB29E8070E00FDEF04 /* AppDelegate.swift in Sources */,
 				B598C0F029E8970300FDEF04 /* UIView+.swift in Sources */,
+				B5DAE64629F6F0070090F25C /* MyPageViewModel.swift in Sources */,
+				B5DAE64D29F6FA7E0090F25C /* MembershipView.swift in Sources */,
 				B598C10229E9D60100FDEF04 /* BottomSheetViewController.swift in Sources */,
 				B598C10029E9D35E00FDEF04 /* ModuleFactory.swift in Sources */,
+				B5DAE62229F684250090F25C /* MyPageViewController.swift in Sources */,
 				B598C0FC29E9BE3A00FDEF04 /* LoginUseCase.swift in Sources */,
+				B5DAE64929F6F5390090F25C /* SectionSeperatorView.swift in Sources */,
 				B5DAE61D29F682020090F25C /* BaseView.swift in Sources */,
+				B5DAE64B29F6F7800090F25C /* LogoutFooterView.swift in Sources */,
+				B5DAE64F29F713E20090F25C /* LabelButtonView.swift in Sources */,
 				B598C0E329E82D3A00FDEF04 /* UIFont+.swift in Sources */,
 				B598C0AD29E8070E00FDEF04 /* SceneDelegate.swift in Sources */,
 			);
