@@ -15,7 +15,6 @@ final class LogoutFooterView: BaseView {
         self.backgroundColor = .tvingBlack
     }
 
-
     override func setLayout() {
         self.addSubview(logoutButton)
         logoutButton.snp.makeConstraints { make in

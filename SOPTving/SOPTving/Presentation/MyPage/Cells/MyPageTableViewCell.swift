@@ -40,7 +40,7 @@ final class MyPageTableViewCell: UITableViewCell {
         contentView.backgroundColor = .tvingBlack
         contentView.addSubviews(titleLabel, nextArrowButton)
         titleLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
+            make.top.bottom.equalToSuperview().inset(17)
             make.leading.equalToSuperview().inset(18)
         }
 

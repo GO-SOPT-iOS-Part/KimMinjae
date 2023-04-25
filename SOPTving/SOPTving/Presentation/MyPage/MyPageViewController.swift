@@ -55,11 +55,14 @@ final class MyPageViewController: BaseViewController {
         super.init(nibName: nil, bundle: nil)
     }
 
+    override func viewDidLayoutSubviews() {
+        tableView.tableFooterView = LogoutFooterView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 80))
+    }
+
     // MARK: - UI & Layout
 
     override func setStyle() {
         tableView.do {
-            $0.tableFooterView = LogoutFooterView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 80))
             $0.rowHeight = UITableView.automaticDimension
             $0.backgroundColor = .tvingBlack
             $0.separatorStyle = .none

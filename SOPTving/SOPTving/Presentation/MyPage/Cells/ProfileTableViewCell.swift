@@ -77,7 +77,7 @@ final class ProfileTableViewCell: UITableViewCell {
         $0.text = "0"
     }
 
-//    private let membershipView = MembershipView()
+    private let membershipView = MembershipView()
 
     private let labelButtonView = LabelButtonView()
 
@@ -102,16 +102,8 @@ final class ProfileTableViewCell: UITableViewCell {
             profileImageView,
             profileName,
             profileButton,
-//            membershipView,
-            containerView,
+            membershipView,
             labelButtonView
-        )
-
-        containerView.addSubviews(
-            membershipStackView,
-            currentMembershipLabel,
-            cashStackView,
-            currentCashLabel
         )
 
         profileImageView.snp.makeConstraints { make in
@@ -130,35 +122,14 @@ final class ProfileTableViewCell: UITableViewCell {
             make.trailing.equalToSuperview().inset(23)
         }
 
-        membershipStackView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(18)
-            make.leading.equalToSuperview().inset(11)
-        }
-
-        currentMembershipLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(membershipStackView)
-            make.trailing.equalToSuperview().inset(13)
-        }
-
-        cashStackView.snp.makeConstraints { make in
-            make.top.equalTo(membershipStackView.snp.bottom).offset(17)
-            make.leading.equalTo(membershipStackView)
-            make.bottom.equalToSuperview().inset(16)
-        }
-
-        currentCashLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(cashStackView)
-            make.trailing.equalTo(currentMembershipLabel)
-        }
-
-        containerView.snp.makeConstraints { make in
+        membershipView.snp.makeConstraints { make in
             make.top.equalTo(profileImageView.snp.bottom).offset(29)
             make.leading.trailing.equalToSuperview().inset(10)
         }
 
         labelButtonView.snp.makeConstraints { make in
-            make.top.equalTo(containerView.snp.bottom).offset(12)
-            make.leading.trailing.equalTo(containerView)
+            make.top.equalTo(membershipView.snp.bottom).offset(12)
+            make.leading.trailing.equalTo(membershipView)
             make.bottom.equalToSuperview().inset(24)
         }
     }
