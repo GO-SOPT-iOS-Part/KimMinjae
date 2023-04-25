@@ -49,7 +49,6 @@
 		B5DAE64B29F6F7800090F25C /* LogoutFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE64A29F6F7800090F25C /* LogoutFooterView.swift */; };
 		B5DAE64D29F6FA7E0090F25C /* MembershipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE64C29F6FA7E0090F25C /* MembershipView.swift */; };
 		B5DAE64F29F713E20090F25C /* LabelButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE64E29F713E20090F25C /* LabelButtonView.swift */; };
-		B5DAE65129F7299B0090F25C /* LogoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE65029F7299B0090F25C /* LogoutTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,7 +94,6 @@
 		B5DAE64A29F6F7800090F25C /* LogoutFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutFooterView.swift; sourceTree = "<group>"; };
 		B5DAE64C29F6FA7E0090F25C /* MembershipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipView.swift; sourceTree = "<group>"; };
 		B5DAE64E29F713E20090F25C /* LabelButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelButtonView.swift; sourceTree = "<group>"; };
-		B5DAE65029F7299B0090F25C /* LogoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,7 +262,6 @@
 			children = (
 				B5DAE62A29F68B0E0090F25C /* ProfileTableViewCell.swift */,
 				B5DAE62C29F68B2D0090F25C /* MyPageTableViewCell.swift */,
-				B5DAE65029F7299B0090F25C /* LogoutTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -378,7 +375,6 @@
 				B5DAE61B29F681F90090F25C /* BaseViewController.swift in Sources */,
 				B598C0E529E83D3100FDEF04 /* Color+.swift in Sources */,
 				B5DAE62D29F68B2D0090F25C /* MyPageTableViewCell.swift in Sources */,
-				B5DAE65129F7299B0090F25C /* LogoutTableViewCell.swift in Sources */,
 				B598C0E129E82B6B00FDEF04 /* ImageLiterals.swift in Sources */,
 				B598C0FE29E9C58700FDEF04 /* String+.swift in Sources */,
 				B598C0F629E9BA0700FDEF04 /* UIButton+.swift in Sources */,

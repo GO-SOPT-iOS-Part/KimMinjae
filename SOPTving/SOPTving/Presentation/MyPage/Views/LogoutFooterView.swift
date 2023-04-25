@@ -7,27 +7,17 @@
 
 import UIKit
 
-final class LogoutFooterView: UITableViewHeaderFooterView {
+final class LogoutFooterView: BaseView {
 
     private let logoutButton = TvingButton(type: .logout)
 
-    override init(reuseIdentifier: String?) {
-        super.init(reuseIdentifier: reuseIdentifier)
-        setStyle()
-        setLayout()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    private func setStyle() {
-        contentView.backgroundColor = .tvingBlack
+    override func setStyle() {
+        self.backgroundColor = .tvingBlack
     }
 
 
-    private func setLayout() {
-        contentView.addSubview(logoutButton)
+    override func setLayout() {
+        self.addSubview(logoutButton)
         logoutButton.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(23)
             make.leading.trailing.equalToSuperview().inset(8)
