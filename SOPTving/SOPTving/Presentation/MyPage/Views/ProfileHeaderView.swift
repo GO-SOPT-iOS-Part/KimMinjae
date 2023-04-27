@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ProfileTableViewCell: UITableViewCell {
+final class ProfileHeaderView: BaseView {
 
     private let profileImageView = UIImageView().then {
         $0.backgroundColor = .tvingWhite
@@ -81,24 +81,9 @@ final class ProfileTableViewCell: UITableViewCell {
 
     private let labelButtonView = LabelButtonView()
 
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setLayout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
-    private func setLayout() {
-        contentView.backgroundColor = .tvingBlack
-        contentView.addSubviews(
+    override func setLayout() {
+        self.backgroundColor = .tvingBlack
+        self.addSubviews(
             profileImageView,
             profileName,
             profileButton,

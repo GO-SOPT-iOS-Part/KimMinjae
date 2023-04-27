@@ -37,6 +37,7 @@ final class LabelButtonView: BaseView {
             value: style,
             range: NSRange(location: 0, length: titleAttr.length)
         )
+        
         $0.attributedText = titleAttr
         $0.numberOfLines = 2
     }
