@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B52FA8ED29FAF4D400AC384B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52FA8EC29FAF4D400AC384B /* HomeViewController.swift */; };
+		B52FA8EF29FAF51300AC384B /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52FA8EE29FAF51300AC384B /* NavigationBarView.swift */; };
+		B596496A29FD3D66000E1AE6 /* MovieDramaCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596496929FD3D66000E1AE6 /* MovieDramaCollectionViewCell.swift */; };
+		B596496D29FD414C000E1AE6 /* MainSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596496C29FD414C000E1AE6 /* MainSectionHeaderView.swift */; };
+		B596496F29FD45A3000E1AE6 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596496E29FD45A3000E1AE6 /* Content.swift */; };
 		B598C0AB29E8070E00FDEF04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598C0AA29E8070E00FDEF04 /* AppDelegate.swift */; };
 		B598C0AD29E8070E00FDEF04 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598C0AC29E8070E00FDEF04 /* SceneDelegate.swift */; };
 		B598C0AF29E8070E00FDEF04 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598C0AE29E8070E00FDEF04 /* ViewController.swift */; };
@@ -53,6 +58,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B52FA8EC29FAF4D400AC384B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		B52FA8EE29FAF51300AC384B /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
+		B596496929FD3D66000E1AE6 /* MovieDramaCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDramaCollectionViewCell.swift; sourceTree = "<group>"; };
+		B596496C29FD414C000E1AE6 /* MainSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSectionHeaderView.swift; sourceTree = "<group>"; };
+		B596496E29FD45A3000E1AE6 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		B598C0A729E8070E00FDEF04 /* SOPTving.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SOPTving.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B598C0AA29E8070E00FDEF04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B598C0AC29E8070E00FDEF04 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +121,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B52FA8EB29FAF4BB00AC384B /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B596496B29FD4111000E1AE6 /* Views */,
+				B596496829FD3D4F000E1AE6 /* Cells */,
+				B52FA8EC29FAF4D400AC384B /* HomeViewController.swift */,
+				B596496E29FD45A3000E1AE6 /* Content.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		B596496829FD3D4F000E1AE6 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B596496929FD3D66000E1AE6 /* MovieDramaCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		B596496B29FD4111000E1AE6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B596496C29FD414C000E1AE6 /* MainSectionHeaderView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		B598C09E29E8070E00FDEF04 = {
 			isa = PBXGroup;
 			children = (
@@ -202,6 +239,7 @@
 				B598C0EC29E87AC700FDEF04 /* AuthTextField.swift */,
 				B598C10129E9D60100FDEF04 /* BottomSheetViewController.swift */,
 				B5DAE64329F6DC910090F25C /* TvingButton.swift */,
+				B52FA8EE29FAF51300AC384B /* NavigationBarView.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -222,6 +260,7 @@
 		B598C0F729E9BCDF00FDEF04 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				B52FA8EB29FAF4BB00AC384B /* Home */,
 				B5DAE62029F684160090F25C /* MyPage */,
 				B598C0F329E96CFD00FDEF04 /* WelcomeViewController.swift */,
 				B598C0AE29E8070E00FDEF04 /* ViewController.swift */,
@@ -369,21 +408,26 @@
 			files = (
 				B598C0EA29E842B400FDEF04 /* LoginViewController.swift in Sources */,
 				B5DAE64429F6DC920090F25C /* TvingButton.swift in Sources */,
+				B52FA8ED29FAF4D400AC384B /* HomeViewController.swift in Sources */,
 				B5DAE65329F7AAA50090F25C /* UIViewController+.swift in Sources */,
 				B598C0F229E8975200FDEF04 /* UITextField+.swift in Sources */,
 				B598C0F429E96CFD00FDEF04 /* WelcomeViewController.swift in Sources */,
 				B5DAE62B29F68B0E0090F25C /* ProfileHeaderView.swift in Sources */,
 				B598C0ED29E87AC700FDEF04 /* AuthTextField.swift in Sources */,
 				B598C0AF29E8070E00FDEF04 /* ViewController.swift in Sources */,
+				B596496A29FD3D66000E1AE6 /* MovieDramaCollectionViewCell.swift in Sources */,
 				B5DAE61F29F682290090F25C /* NSObject+.swift in Sources */,
 				B5DAE61B29F681F90090F25C /* BaseViewController.swift in Sources */,
 				B598C0E529E83D3100FDEF04 /* Color+.swift in Sources */,
 				B5DAE62D29F68B2D0090F25C /* MyPageTableViewCell.swift in Sources */,
 				B598C0E129E82B6B00FDEF04 /* ImageLiterals.swift in Sources */,
 				B598C0FE29E9C58700FDEF04 /* String+.swift in Sources */,
+				B596496F29FD45A3000E1AE6 /* Content.swift in Sources */,
 				B598C0F629E9BA0700FDEF04 /* UIButton+.swift in Sources */,
 				B598C0FA29E9BD4400FDEF04 /* LoginViewModel.swift in Sources */,
 				B598C0AB29E8070E00FDEF04 /* AppDelegate.swift in Sources */,
+				B52FA8EF29FAF51300AC384B /* NavigationBarView.swift in Sources */,
+				B596496D29FD414C000E1AE6 /* MainSectionHeaderView.swift in Sources */,
 				B598C0F029E8970300FDEF04 /* UIView+.swift in Sources */,
 				B5DAE64629F6F0070090F25C /* MyPageViewModel.swift in Sources */,
 				B5DAE64D29F6FA7E0090F25C /* MembershipView.swift in Sources */,
