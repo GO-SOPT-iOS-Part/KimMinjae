@@ -1,5 +1,5 @@
 //
-//  HomeViewController.swift
+//  HomeCollectionViewCell.swift
 //  SOPTving
 //
 //  Created by 김민재 on 2023/04/28.
@@ -7,49 +7,76 @@
 
 import UIKit
 
-final class HomeViewController: BaseViewController {
+final class HomeCollectionViewCell: UICollectionViewCell {
+
+    // MARK: - Properties
 
     private let dummy = Content.dummy()
     private let channelDummy = Channel.dummy()
+    private var headerTexts: [String] = []
 
-    private let viewModel: HomeViewModel
+    // MARK: - UI Components
 
-    @frozen
-    enum Section: Int, CaseIterable {
-        case movieAndDrama = 0
-        case liveChannel
-        case carousel
-        case imageBanner
-    }
-
-    private lazy var collectionView = UICollectionView(
-        frame: .zero, collectionViewLayout: self.createLayout()
-    ).then {
+    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).then {
         $0.backgroundColor = .tvingBlack
     }
 
-    init(viewModel: HomeViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
+    @frozen
+    enum Section: Int, CaseIterable {
+        case liveChannel = 0
+        case movieAndDrama
+        case imageBanner
+        case carousel
+
+        var sectionInsetBottom: CGFloat {
+            switch self {
+            case .liveChannel:
+                return 18
+            case .movieAndDrama:
+                return 49
+            case .imageBanner, .carousel:
+                return .zero
+            }
+        }
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        collectionView.delegate = self
+    // MARK: - View Life Cycle
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setStyle()
+        setLayout()
+        setDelegate()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    func initCellData(headerTexts: [String]) {
+        self.headerTexts = headerTexts
+    }
+}
+
+// MARK: - UI & Layout
+
+extension HomeCollectionViewCell {
+    private func setDelegate() {
         collectionView.dataSource = self
     }
 
-    override func setStyle() {
-        view.backgroundColor = .tvingBlack
+    private func setStyle() {
+        contentView.backgroundColor = .tvingBlack
         collectionView.do {
             $0.register(MovieDramaCollectionViewCell.self, forCellWithReuseIdentifier: MovieDramaCollectionViewCell.className)
             $0.register(PopularChannelCollectionViewCell.self, forCellWithReuseIdentifier: PopularChannelCollectionViewCell.className)
+            $0.register(ImageBannerCollectionViewCell.self, forCellWithReuseIdentifier: ImageBannerCollectionViewCell.className)
             $0.register(MainSectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MainSectionHeaderView.className)
         }
     }
 
-    override func setLayout() {
-        view.addSubview(collectionView)
+    private func setLayout() {
+        contentView.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -57,28 +84,31 @@ final class HomeViewController: BaseViewController {
 
     private func createLayout() -> UICollectionViewCompositionalLayout {
         let layout = UICollectionViewCompositionalLayout { sectionIndex, layoutEnvironment -> NSCollectionLayoutSection? in
-            print(sectionIndex)
+            
             guard let sectionType = Section(rawValue: sectionIndex) else { return nil }
 
-            if sectionType == .liveChannel {
-                return self.createLiveChannelSectionLayout()
-            } else if sectionType == .movieAndDrama {
-                return self.createMovieAndDramaSectionLayout()
-
+            switch sectionType {
+            case .movieAndDrama:
+                return self.createMovieAndDramaSectionLayout(sectionType: sectionType)
+            case .liveChannel:
+                return self.createLiveChannelSectionLayout(sectionType: sectionType)
+            case .imageBanner:
+                return self.createImageBannerSectionLayout(sectionType: sectionType)
+            case .carousel:
+                return nil
             }
-            return nil
             //TODO: - layout
-//            return section
         }
 
         return layout
     }
 }
 
+// MARK: - Methods
 
-extension HomeViewController {
+extension HomeCollectionViewCell {
 
-    private func createMovieAndDramaSectionLayout() -> NSCollectionLayoutSection {
+    private func createMovieAndDramaSectionLayout(sectionType: Section) -> NSCollectionLayoutSection {
         // item -> group -> section -> layout
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
@@ -102,12 +132,12 @@ extension HomeViewController {
 
         section.boundarySupplementaryItems = [sectionHeader]
         section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = .init(top: 0, leading: 15, bottom: 0, trailing: 7)
+        section.contentInsets = .init(top: 0, leading: 15, bottom: sectionType.sectionInsetBottom, trailing: 7)
 
         return section
     }
 
-    private func createLiveChannelSectionLayout() -> NSCollectionLayoutSection {
+    private func createLiveChannelSectionLayout(sectionType: Section) -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
             heightDimension: .fractionalHeight(1)
@@ -127,16 +157,28 @@ extension HomeViewController {
         let section = NSCollectionLayoutSection(group: group)
         section.boundarySupplementaryItems = [sectionHeader]
         section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = .init(top: 0, leading: 12, bottom: 0, trailing: 5)
+        section.contentInsets = .init(top: 0, leading: 12, bottom: sectionType.sectionInsetBottom, trailing: 5)
 
         return section
     }
 
-    private func createImageBannerSectionLayout() {
+    private func createImageBannerSectionLayout(sectionType: Section) -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .fractionalHeight(1)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let gropSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .absolute(58)
+        )
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: gropSize, repeatingSubitem: item, count: 1)
+        let section = NSCollectionLayoutSection(group: group)
 
+        return section
     }
 
-    private func createCarouselSectionLayout() {
+    private func createCarouselSectionLayout(sectionType: Section) {
 
     }
 
@@ -153,38 +195,47 @@ extension HomeViewController {
 
 }
 
+// MARK: - UICollectionViewDelegate
+// MARK: - UICollectionViewDataSource
 
-extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension HomeCollectionViewCell: UICollectionViewDataSource {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return 3
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard kind == UICollectionView.elementKindSectionHeader else { return UICollectionReusableView() }
 
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: MainSectionHeaderView.className, for: indexPath) as? MainSectionHeaderView else { return UICollectionReusableView() }
-        header.configHeaderView(text: viewModel.headerText[indexPath.section])
+        header.configHeaderView(text: headerTexts[indexPath.section])
         return header
     }
 
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let sectionType = Section(rawValue: section) else { return 0 }
+        if sectionType == .imageBanner {
+            return 1
+        }
         return 20
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.section {
         case 0:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieDramaCollectionViewCell.className, for: indexPath) as? MovieDramaCollectionViewCell else { return UICollectionViewCell() }
-
-            cell.configureCell(content: dummy[indexPath.item])
-            return cell
-        case 1:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularChannelCollectionViewCell.className, for: indexPath) as? PopularChannelCollectionViewCell else { return UICollectionViewCell() }
 
             cell.configureCell(rank: indexPath.item + 1, channel: channelDummy[indexPath.item])
 
+            return cell
+        case 1:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieDramaCollectionViewCell.className, for: indexPath) as? MovieDramaCollectionViewCell else { return UICollectionViewCell() }
+
+            cell.configureCell(content: dummy[indexPath.item])
+            return cell
+        case 2:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageBannerCollectionViewCell.className, for: indexPath) as? ImageBannerCollectionViewCell else { return UICollectionViewCell() }
             return cell
         default:
             return UICollectionViewCell()

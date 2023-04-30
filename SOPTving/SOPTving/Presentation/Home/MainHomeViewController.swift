@@ -7,23 +7,69 @@
 
 import UIKit
 
-class MainHomeViewController: UIViewController {
+final class MainHomeViewController: BaseViewController {
+    // MARK: - Properties
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    private let viewModel: MainHomeViewModel
 
-        // Do any additional setup after loading the view.
+    // MARK: - UI Components
+
+    private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()).then {
+        var layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        $0.isPagingEnabled = true
+        $0.showsHorizontalScrollIndicator = false
+        $0.backgroundColor = .tvingBlack
+        $0.collectionViewLayout = layout
     }
-    
 
-    /*
-    // MARK: - Navigation
+    // MARK: - View Life Cycle
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    init(viewModel: MainHomeViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
     }
-    */
 
+    // MARK: - UI & Layout
+
+    override func setStyle() {
+        collectionView.do {
+            $0.register(HomeCollectionViewCell.self, forCellWithReuseIdentifier: HomeCollectionViewCell.className)
+            $0.dataSource = self
+            $0.delegate = self
+        }
+    }
+
+    override func setLayout() {
+        view.addSubview(collectionView)
+        collectionView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+    }
+}
+
+// MARK: - UICollectionViewDelegate
+
+extension MainHomeViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: UIScreen.main.bounds.width, height: collectionView.frame.height)
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+
+extension MainHomeViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionViewCell.className, for: indexPath)
+                as? HomeCollectionViewCell
+        else { return UICollectionViewCell() }
+
+        cell.initCellData(headerTexts: viewModel.headerText)
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
 }

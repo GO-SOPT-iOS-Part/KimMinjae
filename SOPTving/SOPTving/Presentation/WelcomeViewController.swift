@@ -35,8 +35,7 @@ final class WelcomeViewController: UIViewController {
         let button = UIButton(configuration: config)
         button.layer.cornerRadius = 3
         let action = UIAction { _ in
-
-            let navigationVC = UINavigationController(rootViewController: ModuleFactory.shared.makeMyPageViewController())
+            let navigationVC = UINavigationController(rootViewController: ModuleFactory.shared.makeHomeViewController())
             self.setRootViewController(window: self.view.window!, viewController: navigationVC, withAnimation: true)
         }
         button.addAction(action, for: .touchUpInside)

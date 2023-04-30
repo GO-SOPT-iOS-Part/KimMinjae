@@ -17,7 +17,7 @@ final class MyPageViewController: BaseViewController {
     private let viewModel: MyPageViewModel
 
     // MARK: - UI Components
-
+    private lazy var navigationBarView = NavigationBarView(self, type: .myPage)
     private let tableView = UITableView()
 
     // MARK: - View Life Cycle
@@ -36,6 +36,7 @@ final class MyPageViewController: BaseViewController {
     override func setStyle() {
         tableView.do {
             $0.rowHeight = UITableView.automaticDimension
+            $0.estimatedRowHeight = 55
             $0.backgroundColor = .tvingBlack
             $0.separatorStyle = .none
             $0.register(MyPageTableViewCell.self, forCellReuseIdentifier: MyPageTableViewCell.className)
@@ -46,9 +47,21 @@ final class MyPageViewController: BaseViewController {
     }
 
     override func setLayout() {
-        view.addSubviews(tableView)
+        view.addSubviews(
+            navigationBarView,
+            tableView
+        )
+
+        navigationBarView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(40)
+        }
+        
         tableView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(navigationBarView.snp.bottom)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
 }
@@ -67,10 +80,6 @@ extension MyPageViewController: UITableViewDelegate {
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.myPageList.count
-    }
-
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 55
     }
 }
 

@@ -7,6 +7,6 @@
 
 import UIKit
 
-class CarouselCollectionViewCell: UICollectionViewCell {
-    
+final class CarouselCollectionViewCell: UICollectionViewCell {
+    //TODO: - Infinity Carousel 구현하기
 }
