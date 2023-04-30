@@ -1,13 +1,13 @@
 //
-//  HomeViewController.swift
+//  MainHomeViewController.swift
 //  SOPTving
 //
-//  Created by 김민재 on 2023/04/28.
+//  Created by 김민재 on 2023/04/30.
 //
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class MainHomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

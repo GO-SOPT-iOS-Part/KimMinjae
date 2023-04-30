@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B52FA8ED29FAF4D400AC384B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52FA8EC29FAF4D400AC384B /* HomeViewController.swift */; };
+		B52FA8ED29FAF4D400AC384B /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52FA8EC29FAF4D400AC384B /* HomeCollectionViewCell.swift */; };
 		B52FA8EF29FAF51300AC384B /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52FA8EE29FAF51300AC384B /* NavigationBarView.swift */; };
 		B596496A29FD3D66000E1AE6 /* MovieDramaCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596496929FD3D66000E1AE6 /* MovieDramaCollectionViewCell.swift */; };
 		B596496D29FD414C000E1AE6 /* MainSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596496C29FD414C000E1AE6 /* MainSectionHeaderView.swift */; };
 		B596496F29FD45A3000E1AE6 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596496E29FD45A3000E1AE6 /* Content.swift */; };
+		B596497129FD870F000E1AE6 /* PopularChannelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596497029FD870F000E1AE6 /* PopularChannelCollectionViewCell.swift */; };
+		B596497329FD8EB4000E1AE6 /* MainHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596497229FD8EB4000E1AE6 /* MainHomeViewModel.swift */; };
 		B598C0AB29E8070E00FDEF04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598C0AA29E8070E00FDEF04 /* AppDelegate.swift */; };
 		B598C0AD29E8070E00FDEF04 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598C0AC29E8070E00FDEF04 /* SceneDelegate.swift */; };
 		B598C0AF29E8070E00FDEF04 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598C0AE29E8070E00FDEF04 /* ViewController.swift */; };
@@ -41,6 +43,10 @@
 		B598C0FE29E9C58700FDEF04 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598C0FD29E9C58700FDEF04 /* String+.swift */; };
 		B598C10029E9D35E00FDEF04 /* ModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598C0FF29E9D35E00FDEF04 /* ModuleFactory.swift */; };
 		B598C10229E9D60100FDEF04 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598C10129E9D60100FDEF04 /* BottomSheetViewController.swift */; };
+		B5D0CAD929FD9D1700D1F271 /* MainHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0CAD829FD9D1700D1F271 /* MainHomeViewController.swift */; };
+		B5D0CADB29FDA91100D1F271 /* ImageBannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0CADA29FDA91100D1F271 /* ImageBannerCollectionViewCell.swift */; };
+		B5D0CADE29FDAC8000D1F271 /* ScreenUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0CADD29FDAC8000D1F271 /* ScreenUtils.swift */; };
+		B5D0CAE029FDAF4600D1F271 /* CarouselCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D0CADF29FDAF4600D1F271 /* CarouselCollectionViewCell.swift */; };
 		B5DAE61B29F681F90090F25C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE61A29F681F90090F25C /* BaseViewController.swift */; };
 		B5DAE61D29F682020090F25C /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE61C29F682020090F25C /* BaseView.swift */; };
 		B5DAE61F29F682290090F25C /* NSObject+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE61E29F682290090F25C /* NSObject+.swift */; };
@@ -58,11 +64,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B52FA8EC29FAF4D400AC384B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		B52FA8EC29FAF4D400AC384B /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		B52FA8EE29FAF51300AC384B /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
 		B596496929FD3D66000E1AE6 /* MovieDramaCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDramaCollectionViewCell.swift; sourceTree = "<group>"; };
 		B596496C29FD414C000E1AE6 /* MainSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSectionHeaderView.swift; sourceTree = "<group>"; };
 		B596496E29FD45A3000E1AE6 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
+		B596497029FD870F000E1AE6 /* PopularChannelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularChannelCollectionViewCell.swift; sourceTree = "<group>"; };
+		B596497229FD8EB4000E1AE6 /* MainHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHomeViewModel.swift; sourceTree = "<group>"; };
 		B598C0A729E8070E00FDEF04 /* SOPTving.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SOPTving.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B598C0AA29E8070E00FDEF04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B598C0AC29E8070E00FDEF04 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +101,10 @@
 		B598C0FD29E9C58700FDEF04 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		B598C0FF29E9D35E00FDEF04 /* ModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFactory.swift; sourceTree = "<group>"; };
 		B598C10129E9D60100FDEF04 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
+		B5D0CAD829FD9D1700D1F271 /* MainHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHomeViewController.swift; sourceTree = "<group>"; };
+		B5D0CADA29FDA91100D1F271 /* ImageBannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBannerCollectionViewCell.swift; sourceTree = "<group>"; };
+		B5D0CADD29FDAC8000D1F271 /* ScreenUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenUtils.swift; sourceTree = "<group>"; };
+		B5D0CADF29FDAF4600D1F271 /* CarouselCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCollectionViewCell.swift; sourceTree = "<group>"; };
 		B5DAE61A29F681F90090F25C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		B5DAE61C29F682020090F25C /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		B5DAE61E29F682290090F25C /* NSObject+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+.swift"; sourceTree = "<group>"; };
@@ -126,8 +138,10 @@
 			children = (
 				B596496B29FD4111000E1AE6 /* Views */,
 				B596496829FD3D4F000E1AE6 /* Cells */,
-				B52FA8EC29FAF4D400AC384B /* HomeViewController.swift */,
+				B52FA8EC29FAF4D400AC384B /* HomeCollectionViewCell.swift */,
 				B596496E29FD45A3000E1AE6 /* Content.swift */,
+				B596497229FD8EB4000E1AE6 /* MainHomeViewModel.swift */,
+				B5D0CAD829FD9D1700D1F271 /* MainHomeViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -136,6 +150,9 @@
 			isa = PBXGroup;
 			children = (
 				B596496929FD3D66000E1AE6 /* MovieDramaCollectionViewCell.swift */,
+				B596497029FD870F000E1AE6 /* PopularChannelCollectionViewCell.swift */,
+				B5D0CADA29FDA91100D1F271 /* ImageBannerCollectionViewCell.swift */,
+				B5D0CADF29FDAF4600D1F271 /* CarouselCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -212,6 +229,7 @@
 		B598C0DE29E82B2D00FDEF04 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				B5D0CADC29FDAC7500D1F271 /* Utils */,
 				B5DAE61929F681E70090F25C /* Base */,
 				B598C0EE29E896FA00FDEF04 /* Extensions */,
 				B598C0EB29E87AB400FDEF04 /* UIComponents */,
@@ -277,6 +295,14 @@
 				B598C0FB29E9BE3A00FDEF04 /* LoginUseCase.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		B5D0CADC29FDAC7500D1F271 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B5D0CADD29FDAC8000D1F271 /* ScreenUtils.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		B5DAE61929F681E70090F25C /* Base */ = {
@@ -408,14 +434,17 @@
 			files = (
 				B598C0EA29E842B400FDEF04 /* LoginViewController.swift in Sources */,
 				B5DAE64429F6DC920090F25C /* TvingButton.swift in Sources */,
-				B52FA8ED29FAF4D400AC384B /* HomeViewController.swift in Sources */,
+				B52FA8ED29FAF4D400AC384B /* HomeCollectionViewCell.swift in Sources */,
 				B5DAE65329F7AAA50090F25C /* UIViewController+.swift in Sources */,
 				B598C0F229E8975200FDEF04 /* UITextField+.swift in Sources */,
+				B5D0CADE29FDAC8000D1F271 /* ScreenUtils.swift in Sources */,
 				B598C0F429E96CFD00FDEF04 /* WelcomeViewController.swift in Sources */,
+				B5D0CAD929FD9D1700D1F271 /* MainHomeViewController.swift in Sources */,
 				B5DAE62B29F68B0E0090F25C /* ProfileHeaderView.swift in Sources */,
 				B598C0ED29E87AC700FDEF04 /* AuthTextField.swift in Sources */,
 				B598C0AF29E8070E00FDEF04 /* ViewController.swift in Sources */,
 				B596496A29FD3D66000E1AE6 /* MovieDramaCollectionViewCell.swift in Sources */,
+				B596497329FD8EB4000E1AE6 /* MainHomeViewModel.swift in Sources */,
 				B5DAE61F29F682290090F25C /* NSObject+.swift in Sources */,
 				B5DAE61B29F681F90090F25C /* BaseViewController.swift in Sources */,
 				B598C0E529E83D3100FDEF04 /* Color+.swift in Sources */,
@@ -426,6 +455,7 @@
 				B598C0F629E9BA0700FDEF04 /* UIButton+.swift in Sources */,
 				B598C0FA29E9BD4400FDEF04 /* LoginViewModel.swift in Sources */,
 				B598C0AB29E8070E00FDEF04 /* AppDelegate.swift in Sources */,
+				B596497129FD870F000E1AE6 /* PopularChannelCollectionViewCell.swift in Sources */,
 				B52FA8EF29FAF51300AC384B /* NavigationBarView.swift in Sources */,
 				B596496D29FD414C000E1AE6 /* MainSectionHeaderView.swift in Sources */,
 				B598C0F029E8970300FDEF04 /* UIView+.swift in Sources */,
@@ -436,9 +466,11 @@
 				B5DAE62229F684250090F25C /* MyPageViewController.swift in Sources */,
 				B598C0FC29E9BE3A00FDEF04 /* LoginUseCase.swift in Sources */,
 				B5DAE64929F6F5390090F25C /* SectionSeperatorView.swift in Sources */,
+				B5D0CADB29FDA91100D1F271 /* ImageBannerCollectionViewCell.swift in Sources */,
 				B5DAE61D29F682020090F25C /* BaseView.swift in Sources */,
 				B5DAE64B29F6F7800090F25C /* LogoutFooterView.swift in Sources */,
 				B5DAE64F29F713E20090F25C /* LabelButtonView.swift in Sources */,
+				B5D0CAE029FDAF4600D1F271 /* CarouselCollectionViewCell.swift in Sources */,
 				B598C0E329E82D3A00FDEF04 /* UIFont+.swift in Sources */,
 				B598C0AD29E8070E00FDEF04 /* SceneDelegate.swift in Sources */,
 			);

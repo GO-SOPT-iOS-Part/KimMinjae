@@ -1,0 +1,16 @@
+//
+//  HomeViewModel.swift
+//  SOPTving
+//
+//  Created by 김민재 on 2023/04/30.
+//
+
+import Foundation
+
+
+final class HomeViewModel {
+    let headerText: [String] = [
+        "티빙에서 꼭 봐야하는 컨텐츠",
+        "인기 LIVE 채널"
+    ]
+}
