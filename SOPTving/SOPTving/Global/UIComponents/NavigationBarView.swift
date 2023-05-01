@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol NavigationBarViewProtcol: AnyObject {
+    func moveToMain()
+}
+
 final class NavigationBarView: UIView {
 
     @frozen
@@ -18,8 +22,10 @@ final class NavigationBarView: UIView {
 
     private let type: NavigationBarType
     private let viewController: UIViewController
+    weak var delegate: NavigationBarViewProtcol?
 
     private lazy var leftButton = UIButton().then {
+        $0.adjustsImageWhenHighlighted = false
         $0.imageView?.contentMode = .scaleAspectFill
         $0.addTarget(self, action: #selector(didTapBackButton), for: .touchUpInside)
     }
@@ -54,7 +60,7 @@ final class NavigationBarView: UIView {
 
         leftButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.leading.equalToSuperview().inset(24)
+            make.leading.equalToSuperview().inset(10)
         }
 
         rightButton2.snp.makeConstraints { make in
@@ -95,6 +101,11 @@ final class NavigationBarView: UIView {
 extension NavigationBarView {
     @objc
     func didTapBackButton() {
-        viewController.navigationController?.popViewController(animated: true)
+        if type == .tvingMain {
+            delegate?.moveToMain()
+        } else {
+            viewController.navigationController?.popViewController(animated: true)
+        }
+
     }
 }

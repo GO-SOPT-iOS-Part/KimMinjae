@@ -13,11 +13,12 @@ final class HomeViewController: BaseViewController {
 
     private let dummy = Content.dummy()
     private let channelDummy = Channel.dummy()
-    private var headerTexts: [String] = []
+    private var viewModel: MainHomeViewModel
 
     // MARK: - UI Components
 
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).then {
+        $0.contentInsetAdjustmentBehavior = .never
         $0.backgroundColor = .tvingBlack
     }
 
@@ -42,12 +43,19 @@ final class HomeViewController: BaseViewController {
 
     // MARK: - View Life Cycle
 
+    init(viewModel: MainHomeViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegate()
     }
 
-
+    private func setDelegate() {
+        collectionView.dataSource = self
+    }
 
     override func setStyle() {
         view.backgroundColor = .tvingBlack
@@ -72,20 +80,11 @@ final class HomeViewController: BaseViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    func initCellData(headerTexts: [String]) {
-        self.headerTexts = headerTexts
-    }
 }
 
 // MARK: - UI & Layout
 
 extension HomeViewController {
-    private func setDelegate() {
-        collectionView.dataSource = self
-    }
-
-
 
     private func createLayout() -> UICollectionViewCompositionalLayout {
         let layout = UICollectionViewCompositionalLayout { sectionIndex, layoutEnvironment -> NSCollectionLayoutSection? in
@@ -100,9 +99,9 @@ extension HomeViewController {
             case .imageBanner:
                 return self.createImageBannerSectionLayout(sectionType: sectionType)
             case .carousel:
+                //TODO: - layout
                 return nil
             }
-            //TODO: - layout
         }
 
         return layout
@@ -213,7 +212,7 @@ extension HomeViewController: UICollectionViewDataSource {
         guard kind == UICollectionView.elementKindSectionHeader else { return UICollectionReusableView() }
 
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: MainSectionHeaderView.className, for: indexPath) as? MainSectionHeaderView else { return UICollectionReusableView() }
-        header.configHeaderView(text: headerTexts[indexPath.section])
+        header.configHeaderView(text: viewModel.headerText[indexPath.section])
         return header
     }
 

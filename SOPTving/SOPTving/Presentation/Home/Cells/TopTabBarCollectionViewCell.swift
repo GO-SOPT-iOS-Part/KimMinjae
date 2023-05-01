@@ -7,10 +7,18 @@
 
 import UIKit
 
+
 final class TopTabBarCollectionViewCell: UICollectionViewCell {
     private let titleLabel = UILabel().then {
         $0.font = .font(.pretendardRegular, ofSize: 17)
         $0.textColor = .tvingWhite
+    }
+
+    override var isSelected: Bool {
+        didSet {
+            let fontName: FontName = isSelected ? .pretendardBold : .pretendardRegular
+            titleLabel.font = .font(fontName, ofSize: 17)
+        }
     }
 
     override init(frame: CGRect) {
@@ -26,8 +34,13 @@ final class TopTabBarCollectionViewCell: UICollectionViewCell {
     private func setLayout() {
         contentView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.center.equalToSuperview()
+
         }
+    }
+
+    func getTitleFrameWidth() -> CGFloat {
+        self.titleLabel.frame.width
     }
 
     func configureCell(title: String) {
