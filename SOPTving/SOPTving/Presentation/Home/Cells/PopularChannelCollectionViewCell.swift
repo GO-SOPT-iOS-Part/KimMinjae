@@ -71,7 +71,7 @@ final class PopularChannelCollectionViewCell: UICollectionViewCell {
         stackView.snp.makeConstraints { make in
             make.top.equalTo(rankingLabel)
             make.leading.equalTo(rankingLabel.snp.trailing).offset(2)
-            make.bottom.equalToSuperview()
+//            make.bottom.equalToSuperview()
         }
     }
 

@@ -34,10 +34,10 @@ final class MovieDramaCollectionViewCell: UICollectionViewCell {
 
         posterImageView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
+            make.height.equalTo(ScreenUtils.getHeight(146))
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.bottom.equalToSuperview()
             make.leading.equalTo(posterImageView)
             make.top.equalTo(posterImageView.snp.bottom).offset(3)
         }
