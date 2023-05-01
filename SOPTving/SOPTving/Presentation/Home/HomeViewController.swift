@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class HomeCollectionViewCell: UICollectionViewCell {
+final class HomeViewController: BaseViewController {
 
     // MARK: - Properties
 
@@ -42,11 +42,31 @@ final class HomeCollectionViewCell: UICollectionViewCell {
 
     // MARK: - View Life Cycle
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setStyle()
-        setLayout()
+    override func viewDidLoad() {
+        super.viewDidLoad()
         setDelegate()
+    }
+
+
+
+    override func setStyle() {
+        view.backgroundColor = .tvingBlack
+        collectionView.do {
+            $0.register(MovieDramaCollectionViewCell.self, forCellWithReuseIdentifier: MovieDramaCollectionViewCell.className)
+            $0.register(PopularChannelCollectionViewCell.self, forCellWithReuseIdentifier: PopularChannelCollectionViewCell.className)
+            $0.register(ImageBannerCollectionViewCell.self, forCellWithReuseIdentifier: ImageBannerCollectionViewCell.className)
+            $0.register(MainSectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MainSectionHeaderView.className)
+        }
+    }
+
+    override func setLayout() {
+        view.addSubviews(
+            collectionView
+        )
+
+        collectionView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -60,27 +80,12 @@ final class HomeCollectionViewCell: UICollectionViewCell {
 
 // MARK: - UI & Layout
 
-extension HomeCollectionViewCell {
+extension HomeViewController {
     private func setDelegate() {
         collectionView.dataSource = self
     }
 
-    private func setStyle() {
-        contentView.backgroundColor = .tvingBlack
-        collectionView.do {
-            $0.register(MovieDramaCollectionViewCell.self, forCellWithReuseIdentifier: MovieDramaCollectionViewCell.className)
-            $0.register(PopularChannelCollectionViewCell.self, forCellWithReuseIdentifier: PopularChannelCollectionViewCell.className)
-            $0.register(ImageBannerCollectionViewCell.self, forCellWithReuseIdentifier: ImageBannerCollectionViewCell.className)
-            $0.register(MainSectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MainSectionHeaderView.className)
-        }
-    }
 
-    private func setLayout() {
-        contentView.addSubview(collectionView)
-        collectionView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-    }
 
     private func createLayout() -> UICollectionViewCompositionalLayout {
         let layout = UICollectionViewCompositionalLayout { sectionIndex, layoutEnvironment -> NSCollectionLayoutSection? in
@@ -106,7 +111,7 @@ extension HomeCollectionViewCell {
 
 // MARK: - Methods
 
-extension HomeCollectionViewCell {
+extension HomeViewController {
 
     private func createMovieAndDramaSectionLayout(sectionType: Section) -> NSCollectionLayoutSection {
         // item -> group -> section -> layout
@@ -198,7 +203,7 @@ extension HomeCollectionViewCell {
 // MARK: - UICollectionViewDelegate
 // MARK: - UICollectionViewDataSource
 
-extension HomeCollectionViewCell: UICollectionViewDataSource {
+extension HomeViewController: UICollectionViewDataSource {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 3
