@@ -55,7 +55,7 @@ final class MyPageViewController: BaseViewController {
         navigationBarView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(40)
+            make.height.equalTo(ScreenUtils.getHeight(40))
         }
         
         tableView.snp.makeConstraints { make in
