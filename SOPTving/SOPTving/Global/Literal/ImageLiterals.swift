@@ -38,6 +38,8 @@ struct ImageLiterals {
         static var suzume: UIImage { .load(named: "suzume") }
         static var yourName: UIImage { .load(named: "yourName") }
         static var banner: UIImage { .load(named: "banner") }
+        static var baseball: UIImage { .load(named: "baseball") }
+        static var demonSlayer: UIImage { .load(named: "demonSlayer") }
     }
 }
 
