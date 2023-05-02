@@ -38,6 +38,7 @@ final class PopularChannelCollectionViewCell: UICollectionViewCell {
         descriptionLabel,
         ratingLabel
     ]).then {
+        $0.distribution = .equalSpacing
         $0.alignment = .leading
         $0.axis = .vertical
     }
@@ -70,7 +71,7 @@ final class PopularChannelCollectionViewCell: UICollectionViewCell {
 
         stackView.snp.makeConstraints { make in
             make.top.equalTo(rankingLabel)
-            make.leading.equalTo(rankingLabel.snp.trailing).offset(2)
+            make.leading.equalTo(rankingLabel.snp.trailing).offset(4)
 //            make.bottom.equalToSuperview()
         }
     }

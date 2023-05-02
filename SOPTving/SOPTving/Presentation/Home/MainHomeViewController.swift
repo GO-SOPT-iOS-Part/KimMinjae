@@ -34,7 +34,7 @@ final class MainHomeViewController: UIViewController {
 
     private lazy var stickyTabBarView = TopTabBarView().then {
         $0.isHidden = true
-        $0.backgroundColor = .tvingBlack.withAlphaComponent(0.3)
+        $0.backgroundColor = .clear
     }
 
     private lazy var pageViewController = UIPageViewController(
@@ -168,7 +168,6 @@ extension MainHomeViewController: HomeViewControllerProtocol {
         navigationBarView.transform = CGAffineTransform(translationX: 0, y: -y)
         topTabBarView.transform = CGAffineTransform(translationX: 0, y: -y)
 
-        print("FRAME!", navigationBarView.frame.minY)
         if y >= navigationBarView.frame.minY {
             navigationBarView.isHidden = true
         } else {
@@ -179,13 +178,15 @@ extension MainHomeViewController: HomeViewControllerProtocol {
             topTabBarView.isHidden = true
             stickyTabBarView.isHidden = false
             backgroundView.isHidden = false
+
+            backgroundView.alpha = (y / 498) // bigger
         } else {
             topTabBarView.isHidden = false
             stickyTabBarView.isHidden = true
             backgroundView.isHidden = true
 
+            backgroundView.alpha = 1 - (y / 498) // smaller
         }
-
     }
 }
 

@@ -25,4 +25,24 @@ extension UIView {
         self.clipsToBounds = true
 //        self.layer.masksToBounds = false
     }
+
+    func getStatusBarHeight() -> CGFloat {
+        return self.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0 + 6
+    }
+
+    @discardableResult
+    func setGradient(colors: [CGColor],
+                     locations: [NSNumber] = [0.0, 1.0],
+                     startPoint: CGPoint = CGPoint(x: 0.0, y: 0.0),
+                     endPoint: CGPoint = CGPoint(x: 1.0, y: 0.0)) -> Self {
+        let gradient: CAGradientLayer = CAGradientLayer()
+        gradient.type = .axial
+        gradient.colors = colors
+        gradient.locations = locations
+        gradient.startPoint = startPoint
+        gradient.endPoint = endPoint
+        gradient.frame = self.bounds
+        layer.addSublayer(gradient)
+        return self
+    }
 }

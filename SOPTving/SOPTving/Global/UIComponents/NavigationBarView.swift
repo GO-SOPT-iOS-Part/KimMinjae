@@ -31,10 +31,12 @@ final class NavigationBarView: UIView {
     }
 
     private lazy var rightButton1 = UIButton().then {
+        $0.adjustsImageWhenHighlighted = false
         $0.imageView?.contentMode = .scaleAspectFill
     }
 
     private let rightButton2 = UIButton().then {
+        $0.adjustsImageWhenHighlighted = false
         $0.imageView?.contentMode = .scaleAspectFill
     }
 
@@ -98,7 +100,7 @@ final class NavigationBarView: UIView {
 }
 
 
-extension NavigationBarView {
+private extension NavigationBarView {
     @objc
     func didTapBackButton() {
         if type == .tvingMain {

@@ -19,6 +19,11 @@ struct Channel {
     let rating: Float
 }
 
+struct Poster {
+    let posterImage: UIImage
+    let movieName: String
+}
+
 
 extension Content {
     static func dummy() -> [Content] {
@@ -56,5 +61,16 @@ extension Channel {
             )
         }
         return arr
+    }
+}
+
+extension Poster {
+    static func dummy() -> [Poster] {
+        return [
+            Poster(posterImage: ImageLiterals.Main.baseball, movieName: "최강 야구"),
+            Poster(posterImage: ImageLiterals.Main.suzume, movieName: "스즈메의 문단속"),
+            Poster(posterImage: ImageLiterals.Main.yourName, movieName: "너의 이름은"),
+            Poster(posterImage: ImageLiterals.Main.demonSlayer, movieName: "귀멸의 칼날")
+        ]
     }
 }
