@@ -19,11 +19,23 @@ final class MainHomeViewController: UIViewController {
         }
     }
 
+    private var isScrollEnabled = true
+
     // MARK: - UI Components
 
     private lazy var navigationBarView = NavigationBarView(self, type: .tvingMain)
 
-    private lazy var topTabBarView = TopTabBarView()
+    private let topTabBarView = TopTabBarView()
+
+    private let backgroundView = UIView().then {
+        $0.backgroundColor = .tvingBlack
+        $0.isHidden = true
+    }
+
+    private lazy var stickyTabBarView = TopTabBarView().then {
+        $0.isHidden = true
+        $0.backgroundColor = .tvingBlack.withAlphaComponent(0.3)
+    }
 
     private lazy var pageViewController = UIPageViewController(
         transitionStyle: .scroll,
@@ -56,8 +68,22 @@ final class MainHomeViewController: UIViewController {
         view.addSubviews(
             pageViewController.view,
             navigationBarView,
-            topTabBarView
+            topTabBarView,
+            backgroundView,
+            stickyTabBarView
         )
+
+        backgroundView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(stickyTabBarView.snp.bottom)
+        }
+
+        stickyTabBarView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(ScreenUtils.getHeight(40))
+        }
 
         pageViewController.view.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
@@ -90,9 +116,10 @@ extension MainHomeViewController {
         guard let firstVC = controllers.first,
               let homeVC = firstVC as? HomeViewController
         else {
-            print("failed ! ")
             return
         }
+
+        homeVC.delegate = self
 
         pageViewController.setViewControllers(
             [homeVC],
@@ -103,6 +130,7 @@ extension MainHomeViewController {
     private func setDelegate() {
         navigationBarView.delegate = self
         topTabBarView.delegate = self
+        stickyTabBarView.delegate = self
         pageViewController.delegate = self
         pageViewController.dataSource = self
     }
@@ -130,6 +158,36 @@ extension MainHomeViewController: NavigationBarViewProtcol {
     }
 }
 
+extension MainHomeViewController: HomeViewControllerProtocol {
+    //TODO: - 스크롤 시의 애니메이션 구현하기
+    func updateScrollViewOffset(y: CGFloat) {
+//        guard let statusBarHeight = view.getStatusBarHeight(),
+//              y >= 0
+//        else { return }
+
+        navigationBarView.transform = CGAffineTransform(translationX: 0, y: -y)
+        topTabBarView.transform = CGAffineTransform(translationX: 0, y: -y)
+
+        print("FRAME!", navigationBarView.frame.minY)
+        if y >= navigationBarView.frame.minY {
+            navigationBarView.isHidden = true
+        } else {
+            navigationBarView.isHidden = false
+        }
+
+        if y >= topTabBarView.frame.minY {
+            topTabBarView.isHidden = true
+            stickyTabBarView.isHidden = false
+            backgroundView.isHidden = false
+        } else {
+            topTabBarView.isHidden = false
+            stickyTabBarView.isHidden = true
+            backgroundView.isHidden = true
+
+        }
+
+    }
+}
 
 extension MainHomeViewController: UIPageViewControllerDelegate {
 

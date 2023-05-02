@@ -7,13 +7,18 @@
 
 import UIKit
 
+protocol HomeViewControllerProtocol: AnyObject {
+    func updateScrollViewOffset(y: CGFloat)
+}
+
+
 final class HomeViewController: BaseViewController {
 
     // MARK: - Properties
 
-    private let dummy = Content.dummy()
-    private let channelDummy = Channel.dummy()
     private var viewModel: MainHomeViewModel
+
+    weak var delegate: HomeViewControllerProtocol?
 
     // MARK: - UI Components
 
@@ -24,10 +29,10 @@ final class HomeViewController: BaseViewController {
 
     @frozen
     enum Section: Int, CaseIterable {
-        case liveChannel = 0
+        case carousel = 0
+        case liveChannel
         case movieAndDrama
         case imageBanner
-        case carousel
 
         var sectionInsetBottom: CGFloat {
             switch self {
@@ -35,8 +40,10 @@ final class HomeViewController: BaseViewController {
                 return 18
             case .movieAndDrama:
                 return 49
-            case .imageBanner, .carousel:
+            case .imageBanner:
                 return .zero
+            case .carousel:
+                return 38
             }
         }
     }
@@ -64,6 +71,8 @@ final class HomeViewController: BaseViewController {
             $0.register(PopularChannelCollectionViewCell.self, forCellWithReuseIdentifier: PopularChannelCollectionViewCell.className)
             $0.register(ImageBannerCollectionViewCell.self, forCellWithReuseIdentifier: ImageBannerCollectionViewCell.className)
             $0.register(MainSectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MainSectionHeaderView.className)
+            $0.register(CarouselCollectionViewCell.self, forCellWithReuseIdentifier: CarouselCollectionViewCell.className)
+            $0.delegate = self
         }
     }
 
@@ -84,11 +93,11 @@ final class HomeViewController: BaseViewController {
 
 // MARK: - UI & Layout
 
-extension HomeViewController {
+private extension HomeViewController {
 
-    private func createLayout() -> UICollectionViewCompositionalLayout {
+    func createLayout() -> UICollectionViewCompositionalLayout {
         let layout = UICollectionViewCompositionalLayout { sectionIndex, layoutEnvironment -> NSCollectionLayoutSection? in
-            
+
             guard let sectionType = Section(rawValue: sectionIndex) else { return nil }
 
             switch sectionType {
@@ -99,20 +108,14 @@ extension HomeViewController {
             case .imageBanner:
                 return self.createImageBannerSectionLayout(sectionType: sectionType)
             case .carousel:
-                //TODO: - layout
-                return nil
+                return self.createCarouselSectionLayout(sectionType: sectionType)
             }
         }
 
         return layout
     }
-}
 
-// MARK: - Methods
-
-extension HomeViewController {
-
-    private func createMovieAndDramaSectionLayout(sectionType: Section) -> NSCollectionLayoutSection {
+    func createMovieAndDramaSectionLayout(sectionType: Section) -> NSCollectionLayoutSection {
         // item -> group -> section -> layout
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
@@ -141,7 +144,7 @@ extension HomeViewController {
         return section
     }
 
-    private func createLiveChannelSectionLayout(sectionType: Section) -> NSCollectionLayoutSection {
+    func createLiveChannelSectionLayout(sectionType: Section) -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
             heightDimension: .fractionalHeight(1)
@@ -166,7 +169,7 @@ extension HomeViewController {
         return section
     }
 
-    private func createImageBannerSectionLayout(sectionType: Section) -> NSCollectionLayoutSection {
+    func createImageBannerSectionLayout(sectionType: Section) -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
             heightDimension: .fractionalHeight(1)
@@ -182,11 +185,20 @@ extension HomeViewController {
         return section
     }
 
-    private func createCarouselSectionLayout(sectionType: Section) {
+    func createCarouselSectionLayout(sectionType: Section) -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
 
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.6))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .paging
+
+        return section
     }
 
-    private func createSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
+    func createSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1),
@@ -200,12 +212,21 @@ extension HomeViewController {
 }
 
 // MARK: - UICollectionViewDelegate
+
+extension HomeViewController: UICollectionViewDelegate {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print(scrollView.contentOffset.y)
+        delegate?.updateScrollViewOffset(y: scrollView.contentOffset.y)
+    }
+}
+
 // MARK: - UICollectionViewDataSource
 
 extension HomeViewController: UICollectionViewDataSource {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        return Section.allCases.count
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -228,19 +249,30 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.section {
         case 0:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularChannelCollectionViewCell.className, for: indexPath) as? PopularChannelCollectionViewCell else { return UICollectionViewCell() }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CarouselCollectionViewCell.className, for: indexPath) as? CarouselCollectionViewCell else { return UICollectionViewCell() }
 
-            cell.configureCell(rank: indexPath.item + 1, channel: channelDummy[indexPath.item])
-
+            cell.configureCarouselCell(poster: viewModel.posterCarouselImages[indexPath.item])
             return cell
+
         case 1:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieDramaCollectionViewCell.className, for: indexPath) as? MovieDramaCollectionViewCell else { return UICollectionViewCell() }
-
-            cell.configureCell(content: dummy[indexPath.item])
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularChannelCollectionViewCell.className, for: indexPath) as? PopularChannelCollectionViewCell else { return UICollectionViewCell() }
+            cell.configureCell(rank: indexPath.item + 1, channel: viewModel.channelDummy[indexPath.item])
             return cell
+
         case 2:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieDramaCollectionViewCell.className, for: indexPath) as? MovieDramaCollectionViewCell else { return UICollectionViewCell() }
+            cell.configureCell(content: viewModel.contentDummy[indexPath.item])
+            return cell
+
+        case 3:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageBannerCollectionViewCell.className, for: indexPath) as? ImageBannerCollectionViewCell else { return UICollectionViewCell() }
             return cell
+
+//        case 4..<7:
+//            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieDramaCollectionViewCell.className, for: indexPath) as? MovieDramaCollectionViewCell else { return UICollectionViewCell() }
+//            cell.configureCell(content: viewModel.contentDummy[indexPath.item])
+//            return cell
+
         default:
             return UICollectionViewCell()
         }
