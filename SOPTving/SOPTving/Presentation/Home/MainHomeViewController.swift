@@ -136,12 +136,17 @@ extension MainHomeViewController {
     }
 
     private func setFirstVCinPageViewController(currIndex: Int, targetIndex: Int) {
-
         guard targetIndex >= 0 && targetIndex < controllers.count else { return }
         let direction: UIPageViewController.NavigationDirection = currIndex < targetIndex
         ? .forward
         : .reverse
         pageViewController.setViewControllers([controllers[targetIndex]], direction: direction, animated: true)
+    }
+
+    private func setStickyViewIsHidden(flag: Bool) {
+        topTabBarView.isHidden = !flag
+        stickyTabBarView.isHidden = flag
+        backgroundView.isHidden = flag
     }
 }
 
@@ -159,12 +164,8 @@ extension MainHomeViewController: NavigationBarViewProtcol {
 }
 
 extension MainHomeViewController: HomeViewControllerProtocol {
-    //TODO: - 스크롤 시의 애니메이션 구현하기
-    func updateScrollViewOffset(y: CGFloat) {
-//        guard let statusBarHeight = view.getStatusBarHeight(),
-//              y >= 0
-//        else { return }
 
+    func updateScrollViewOffset(y: CGFloat) {
         navigationBarView.transform = CGAffineTransform(translationX: 0, y: -y)
         topTabBarView.transform = CGAffineTransform(translationX: 0, y: -y)
 
@@ -175,16 +176,10 @@ extension MainHomeViewController: HomeViewControllerProtocol {
         }
 
         if y >= topTabBarView.frame.minY {
-            topTabBarView.isHidden = true
-            stickyTabBarView.isHidden = false
-            backgroundView.isHidden = false
-
-            backgroundView.alpha = (y / 498) // bigger
+            setStickyViewIsHidden(flag: false)
+            backgroundView.alpha = (y / 498)
         } else {
-            topTabBarView.isHidden = false
-            stickyTabBarView.isHidden = true
-            backgroundView.isHidden = true
-
+            setStickyViewIsHidden(flag: true)
             backgroundView.alpha = 1 - (y / 498) // smaller
         }
     }

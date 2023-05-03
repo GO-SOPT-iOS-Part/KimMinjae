@@ -10,6 +10,7 @@ import UIKit
 final class ContainerCarouselCollectionViewCell: UICollectionViewCell {
 
     private var posters: [Poster] = []
+    private var timer: Timer?
 
     private let carouselCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -47,6 +48,7 @@ final class ContainerCarouselCollectionViewCell: UICollectionViewCell {
         setStyle()
         setLayout()
         setDelegate()
+        activateTimer()
     }
 
     required init?(coder: NSCoder) {
@@ -65,8 +67,8 @@ final class ContainerCarouselCollectionViewCell: UICollectionViewCell {
         }
 
         pageControl.snp.makeConstraints { make in
-            make.top.equalTo(carouselCollectionView.snp.bottom)
-            make.leading.equalToSuperview()
+            make.bottom.equalTo(carouselCollectionView.snp.bottom)
+            make.leading.equalToSuperview().offset(-20)
         }
     }
     
@@ -76,6 +78,32 @@ extension ContainerCarouselCollectionViewCell {
     private func setDelegate() {
         carouselCollectionView.delegate = self
         carouselCollectionView.dataSource = self
+    }
+
+    private func invalidateTimer() {
+        timer?.invalidate()
+    }
+
+    private func activateTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(timerCallBack), userInfo: nil, repeats: true)
+    }
+
+    @objc
+    private func timerCallBack() {
+        let visibleItem = carouselCollectionView.indexPathsForVisibleItems[0].item
+        let nextItem = visibleItem + 1
+        let initialPosterCounts = posters.count - 2
+
+        carouselCollectionView.scrollToItem(at: IndexPath(item: nextItem, section: 0), at: .centeredHorizontally, animated: true)
+        // 넘기는 건 5로 넘기고
+
+        if visibleItem == initialPosterCounts {
+            // 마지막이니까 다시 1번째 Index로 돌리기 state를 변경시킨다 여기서
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.carouselCollectionView.scrollToItem(at: IndexPath(item: 1, section: 0), at: .centeredHorizontally, animated: false)
+            }
+        }
+        pageControl.currentPage = visibleItem % initialPosterCounts
     }
 
     func initCell(posters: [Poster]) {
@@ -98,9 +126,8 @@ extension ContainerCarouselCollectionViewCell: UICollectionViewDelegateFlowLayou
 extension ContainerCarouselCollectionViewCell: UICollectionViewDelegate {
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        //TODO: - Timer로 자동 이동
-
-//        let count = images.count
+        invalidateTimer()
+        activateTimer()
 //
 //
 //        // 4 1 2 3 4 1
