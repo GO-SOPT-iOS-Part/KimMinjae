@@ -255,7 +255,7 @@ extension HomeViewController: UICollectionViewDataSource {
         if sectionType == .imageBanner || sectionType == .carousel {
             return 1
         }
-        return 20
+        return viewModel.contentDummy.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
