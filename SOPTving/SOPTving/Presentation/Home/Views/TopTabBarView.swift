@@ -40,7 +40,7 @@ enum TopTab: String, CaseIterable {
 
 final class TopTabBarView: BaseView {
 
-    var targetIndex: Int = 0 {
+    private var targetIndex: Int = 0 {
         didSet {
             moveIndicatorbar(targetIndex: targetIndex)
         }
@@ -116,6 +116,14 @@ extension TopTabBarView {
         UIView.animate(withDuration: 0.3) {
             self.layoutIfNeeded()
         }
+    }
+
+    func setIndicatorBar(to targetIndex: Int) {
+        self.targetIndex = targetIndex
+    }
+
+    func checkIsBarAndPageInSameIndex(for currentIndex: Int) -> Bool {
+        return self.targetIndex == currentIndex
     }
 }
 

@@ -143,7 +143,7 @@ extension MainHomeViewController {
         ? .forward
         : .reverse
         pageViewController.setViewControllers([controllers[targetIndex]], direction: direction, animated: true)
-        topTabBarView.targetIndex = targetIndex
+        topTabBarView.setIndicatorBar(to: targetIndex)
     }
 
     private func setStickyViewIsHidden(flag: Bool) {
@@ -198,7 +198,7 @@ extension MainHomeViewController: UIPageViewControllerDelegate {
         guard let targetVC = pendingViewControllers.first,
               let targetIndex = controllers.firstIndex(of: targetVC)
         else { return }
-        topTabBarView.targetIndex = targetIndex
+        topTabBarView.setIndicatorBar(to: targetIndex)
     }
 
 
@@ -207,8 +207,8 @@ extension MainHomeViewController: UIPageViewControllerDelegate {
               let currentPageIndex = controllers.firstIndex(of: currentVC)
         else { return }
 
-        if currentPageIndex != topTabBarView.targetIndex {
-            topTabBarView.targetIndex = currentPageIndex
+        if !topTabBarView.checkIsBarAndPageInSameIndex(for: currentPageIndex) {
+            topTabBarView.setIndicatorBar(to: currentPageIndex)
         }
     }
 }
