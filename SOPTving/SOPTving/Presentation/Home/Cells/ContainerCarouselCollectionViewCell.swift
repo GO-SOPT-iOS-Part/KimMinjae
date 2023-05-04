@@ -24,7 +24,6 @@ final class ContainerCarouselCollectionViewCell: UICollectionViewCell {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.contentOffset = .zero
         collectionView.backgroundColor = .clear
-        collectionView.clipsToBounds = true // ?
         collectionView.register(CarouselCollectionViewCell.self, forCellWithReuseIdentifier: CarouselCollectionViewCell.className)
         collectionView.isPagingEnabled = true
         collectionView.contentInsetAdjustmentBehavior = .never
@@ -36,7 +35,6 @@ final class ContainerCarouselCollectionViewCell: UICollectionViewCell {
         pageControl.currentPageIndicatorTintColor = .white
         pageControl.pageIndicatorTintColor = .gray
         pageControl.backgroundStyle = .minimal
-        pageControl.numberOfPages = 4
         pageControl.currentPage = 0
         pageControl.isUserInteractionEnabled = false
         pageControl.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
@@ -107,6 +105,7 @@ extension ContainerCarouselCollectionViewCell {
 
     func initCell(posters: [Poster]) {
         self.posters = posters
+        self.pageControl.numberOfPages = posters.count - 2
     }
 
     func setFirstPosition() {
@@ -127,9 +126,7 @@ extension ContainerCarouselCollectionViewCell: UICollectionViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         invalidateTimer()
         activateTimer()
-//
-//
-//        // 4 1 2 3 4 1
+
         if scrollView.contentOffset.x == 0 { // 첫번째(4)가 보이면 4번째 index의 4로 이동시키기
             scrollView.setContentOffset(.init(x: Size.screenWidth * 4, y: scrollView.contentOffset.y), animated: false)
         }
