@@ -91,7 +91,7 @@ extension ContainerCarouselCollectionViewCell {
     @objc
     private func timerCallBack() {
         let visibleItem = carouselCollectionView.indexPathsForVisibleItems[0].item
-        let nextItem = visibleItem + 1
+        let nextItem = min(visibleItem + 1, posters.count - 1)
         let initialPosterCounts = posters.count - 2
 
         carouselCollectionView.scrollToItem(at: IndexPath(item: nextItem, section: 0), at: .centeredHorizontally, animated: true)

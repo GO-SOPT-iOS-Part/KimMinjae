@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MainHomeViewController: UIViewController {
+final class MainHomeViewController: BaseViewController {
 
     // MARK: - Properties
 
@@ -43,6 +43,10 @@ final class MainHomeViewController: UIViewController {
 
     // MARK: - View Life Cycle
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
     init(viewModel: MainHomeViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -61,7 +65,7 @@ final class MainHomeViewController: UIViewController {
 
     // MARK: - UI & Layout
 
-    private func setLayout() {
+    override func setLayout() {
 
         view.addSubviews(
             pageViewController.view,
