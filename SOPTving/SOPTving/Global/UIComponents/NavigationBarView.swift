@@ -9,6 +9,7 @@ import UIKit
 
 protocol NavigationBarViewProtcol: AnyObject {
     func moveToMain()
+    func moveToMyPage()
 }
 
 final class NavigationBarView: UIView {
@@ -33,11 +34,13 @@ final class NavigationBarView: UIView {
     private lazy var rightButton1 = UIButton().then {
         $0.adjustsImageWhenHighlighted = false
         $0.imageView?.contentMode = .scaleAspectFill
+        $0.addTarget(self, action: #selector(didTapRightButtonLeft), for: .touchUpInside)
     }
 
-    private let rightButton2 = UIButton().then {
+    private lazy var rightButton2 = UIButton().then {
         $0.adjustsImageWhenHighlighted = false
         $0.imageView?.contentMode = .scaleAspectFill
+        $0.addTarget(self, action: #selector(didTapRightButtonRight), for: .touchUpInside)
     }
 
     init(_ viewController: UIViewController, type: NavigationBarType) {
@@ -108,6 +111,15 @@ private extension NavigationBarView {
         } else {
             viewController.navigationController?.popViewController(animated: true)
         }
+    }
 
+    @objc func didTapRightButtonLeft() {
+        print("tapped")
+    }
+
+    @objc func didTapRightButtonRight() {
+        if type == .tvingMain {
+            delegate?.moveToMyPage()
+        }
     }
 }

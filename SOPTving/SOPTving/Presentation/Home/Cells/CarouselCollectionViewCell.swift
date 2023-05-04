@@ -12,6 +12,10 @@ final class CarouselCollectionViewCell: UICollectionViewCell {
         $0.contentMode = .scaleAspectFill
     }
 
+    override func prepareForReuse() {
+        posterImageView.image = nil
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setLayout()
@@ -30,12 +34,6 @@ final class CarouselCollectionViewCell: UICollectionViewCell {
 
     func configureCarouselCell(poster: Poster) {
         posterImageView.image = poster.posterImage
-//        posterImageView.setGradient(
-//            colors: [UIColor.black.cgColor, UIColor.clear.cgColor],
-//            locations: [0.1],
-//            startPoint: .init(x: 0.5, y: 1),
-//            endPoint: .init(x: 0.5, y: 0.8)
-//        )
     }
 
 }

@@ -19,8 +19,6 @@ final class MainHomeViewController: UIViewController {
         }
     }
 
-    private var isScrollEnabled = true
-
     // MARK: - UI Components
 
     private lazy var navigationBarView = NavigationBarView(self, type: .tvingMain)
@@ -141,6 +139,7 @@ extension MainHomeViewController {
         ? .forward
         : .reverse
         pageViewController.setViewControllers([controllers[targetIndex]], direction: direction, animated: true)
+        topTabBarView.targetIndex = targetIndex
     }
 
     private func setStickyViewIsHidden(flag: Bool) {
@@ -158,8 +157,12 @@ extension MainHomeViewController: TopTabBarViewProtocol {
 
 extension MainHomeViewController: NavigationBarViewProtcol {
     func moveToMain() {
-        topTabBarView.targetIndex = 0
-        self.currentPageIndex = 0
+        setFirstVCinPageViewController(currIndex: currentPageIndex, targetIndex: 0)
+    }
+
+    func moveToMyPage() {
+        let viewController = ModuleFactory.shared.makeMyPageViewController()
+        self.navigationController?.pushViewController(viewController, animated: false)
     }
 }
 

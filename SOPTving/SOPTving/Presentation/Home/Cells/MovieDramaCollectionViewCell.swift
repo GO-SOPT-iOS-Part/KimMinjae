@@ -8,7 +8,11 @@
 import UIKit
 
 final class MovieDramaCollectionViewCell: UICollectionViewCell {
-    private let posterImageView = UIImageView()
+    private let posterImageView = UIImageView().then {
+        $0.clipsToBounds = true
+        $0.layer.cornerRadius = 3
+    }
+
     private let titleLabel = UILabel().then {
         $0.contentMode = .scaleAspectFit
         $0.textColor = .tvingGray2

@@ -25,58 +25,6 @@ final class ProfileHeaderView: BaseView {
         $0.contentEdgeInsets = UIEdgeInsets(top: 5, left: 11, bottom: 5, right: 11)
     }
 
-    private let containerView = UIView().then {
-        $0.makeRounded(cornerRadius: 3)
-        $0.backgroundColor = .tvingGray5
-    }
-
-    private let membershipImageView = UIImageView().then {
-        $0.image = ImageLiterals.MyPage.membership.withRenderingMode(.alwaysOriginal)
-    }
-
-    private let membershipLabel = UILabel().then {
-        $0.font = .font(.pretendardMedium, ofSize: 13)
-        $0.textColor = .tvingGray3
-        $0.text = "나의 이용권"
-    }
-
-    private lazy var membershipStackView = UIStackView(arrangedSubviews: [
-        membershipImageView,
-        membershipLabel
-    ]).then {
-        $0.spacing = 5
-    }
-
-    private let currentMembershipLabel = UILabel().then {
-        $0.font = .font(.pretendardMedium, ofSize: 13)
-        $0.textColor = .tvingGray3
-        $0.text = "사용중인 이용권이 없습니다"
-    }
-
-    private let cashImageView = UIImageView().then {
-        $0.image = ImageLiterals.MyPage.cash.withRenderingMode(.alwaysOriginal)
-    }
-
-    private lazy var cashStackView =
-    UIStackView(arrangedSubviews: [
-        cashImageView,
-        cashLabel
-    ]).then {
-        $0.spacing = 5
-    }
-
-    private let cashLabel = UILabel().then {
-        $0.font = .font(.pretendardMedium, ofSize: 13)
-        $0.textColor = .tvingGray3
-        $0.text = "티빙캐시"
-    }
-
-    private let currentCashLabel = UILabel().then {
-        $0.font = .font(.pretendardBold, ofSize: 15)
-        $0.textColor = .tvingWhite
-        $0.text = "0"
-    }
-
     private let membershipView = MembershipView()
 
     private let labelButtonView = LabelButtonView()

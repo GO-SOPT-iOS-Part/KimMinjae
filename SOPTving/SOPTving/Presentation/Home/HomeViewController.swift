@@ -228,7 +228,6 @@ private extension HomeViewController {
 extension HomeViewController: UICollectionViewDelegate {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(scrollView.contentOffset.y)
         delegate?.updateScrollViewOffset(y: scrollView.contentOffset.y)
     }
 }
@@ -259,34 +258,27 @@ extension HomeViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch indexPath.section {
-        case 0:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContainerCarouselCollectionViewCell.className, for: indexPath) as? ContainerCarouselCollectionViewCell else { return UICollectionViewCell() }
-            cell.initCell(posters: viewModel.posterCarouselImages)
-            return cell
-
-        case 1:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularChannelCollectionViewCell.className, for: indexPath) as? PopularChannelCollectionViewCell else { return UICollectionViewCell() }
-            cell.configureCell(rank: indexPath.item + 1, channel: viewModel.channelDummy[indexPath.item])
-            return cell
-
-        case 2:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieDramaCollectionViewCell.className, for: indexPath) as? MovieDramaCollectionViewCell else { return UICollectionViewCell() }
-            cell.configureCell(content: viewModel.contentDummy[indexPath.item])
-            return cell
-
-        case 3:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageBannerCollectionViewCell.className, for: indexPath) as? ImageBannerCollectionViewCell else { return UICollectionViewCell() }
-            return cell
-
-        case 4..<8:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieDramaCollectionViewCell.className, for: indexPath) as? MovieDramaCollectionViewCell else { return UICollectionViewCell() }
-            cell.configureCell(content: viewModel.contentDummy[indexPath.item])
-            return cell
-
-        default:
+        guard let sectionType = Section(rawValue: indexPath.section) else {
+            print("Wrong Section !")
             return UICollectionViewCell()
         }
 
+        switch sectionType {
+        case .carousel:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContainerCarouselCollectionViewCell.className, for: indexPath) as? ContainerCarouselCollectionViewCell else { return UICollectionViewCell() }
+            cell.initCell(posters: viewModel.posterCarouselImages)
+            return cell
+        case .imageBanner:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageBannerCollectionViewCell.className, for: indexPath) as? ImageBannerCollectionViewCell else { return UICollectionViewCell() }
+            return cell
+        case .liveChannel:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularChannelCollectionViewCell.className, for: indexPath) as? PopularChannelCollectionViewCell else { return UICollectionViewCell() }
+            cell.configureCell(rank: indexPath.item + 1, channel: viewModel.channelDummy[indexPath.item])
+            return cell
+        case .movieAndDrama, .paramountNew, .programCollection, .favoriteMovies, .animations:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieDramaCollectionViewCell.className, for: indexPath) as? MovieDramaCollectionViewCell else { return UICollectionViewCell() }
+            cell.configureCell(content: viewModel.contentDummy[indexPath.item])
+            return cell
+        }
     }
 }

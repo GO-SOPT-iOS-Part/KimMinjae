@@ -67,7 +67,7 @@ final class ContainerCarouselCollectionViewCell: UICollectionViewCell {
         }
 
         pageControl.snp.makeConstraints { make in
-            make.bottom.equalTo(carouselCollectionView.snp.bottom)
+            make.top.equalTo(carouselCollectionView.snp.bottom)
             make.leading.equalToSuperview().offset(-20)
         }
     }
@@ -95,10 +95,9 @@ extension ContainerCarouselCollectionViewCell {
         let initialPosterCounts = posters.count - 2
 
         carouselCollectionView.scrollToItem(at: IndexPath(item: nextItem, section: 0), at: .centeredHorizontally, animated: true)
-        // 넘기는 건 5로 넘기고
+
 
         if visibleItem == initialPosterCounts {
-            // 마지막이니까 다시 1번째 Index로 돌리기 state를 변경시킨다 여기서
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.carouselCollectionView.scrollToItem(at: IndexPath(item: 1, section: 0), at: .centeredHorizontally, animated: false)
             }
