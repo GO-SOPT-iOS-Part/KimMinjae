@@ -72,11 +72,11 @@ final class HomeViewController: BaseViewController {
     override func setStyle() {
         view.backgroundColor = .tvingBlack
         collectionView.do {
-            $0.register(MovieDramaCollectionViewCell.self, forCellWithReuseIdentifier: MovieDramaCollectionViewCell.className)
-            $0.register(PopularChannelCollectionViewCell.self, forCellWithReuseIdentifier: PopularChannelCollectionViewCell.className)
-            $0.register(ImageBannerCollectionViewCell.self, forCellWithReuseIdentifier: ImageBannerCollectionViewCell.className)
-            $0.register(MainSectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MainSectionHeaderView.className)
-            $0.register(ContainerCarouselCollectionViewCell.self, forCellWithReuseIdentifier: ContainerCarouselCollectionViewCell.className)
+            $0.register(cell: MovieDramaCollectionViewCell.self)
+            $0.register(cell: PopularChannelCollectionViewCell.self)
+            $0.register(cell: ImageBannerCollectionViewCell.self)
+            $0.registerHeaderView(reusableView: MainSectionHeaderView.self)
+            $0.register(cell: ContainerCarouselCollectionViewCell.self)
             $0.delegate = self
         }
     }
@@ -243,7 +243,8 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard kind == UICollectionView.elementKindSectionHeader else { return UICollectionReusableView() }
 
-        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: MainSectionHeaderView.className, for: indexPath) as? MainSectionHeaderView else { return UICollectionReusableView() }
+        let header = collectionView.dequeueHeaderView(type: MainSectionHeaderView.self, forIndexPath: indexPath)
+
         header.configHeaderView(text: viewModel.headerText[indexPath.section])
         return header
     }
@@ -265,18 +266,18 @@ extension HomeViewController: UICollectionViewDataSource {
 
         switch sectionType {
         case .carousel:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContainerCarouselCollectionViewCell.className, for: indexPath) as? ContainerCarouselCollectionViewCell else { return UICollectionViewCell() }
+            let cell = collectionView.dequeueReusableCell(type: ContainerCarouselCollectionViewCell.self, forIndexPath: indexPath)
             cell.initCell(posters: viewModel.posterCarouselImages)
             return cell
         case .imageBanner:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageBannerCollectionViewCell.className, for: indexPath) as? ImageBannerCollectionViewCell else { return UICollectionViewCell() }
+            let cell = collectionView.dequeueReusableCell(type: ImageBannerCollectionViewCell.self, forIndexPath: indexPath)
             return cell
         case .liveChannel:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularChannelCollectionViewCell.className, for: indexPath) as? PopularChannelCollectionViewCell else { return UICollectionViewCell() }
+            let cell = collectionView.dequeueReusableCell(type: PopularChannelCollectionViewCell.self, forIndexPath: indexPath)
             cell.configureCell(rank: indexPath.item + 1, channel: viewModel.channelDummy[indexPath.item])
             return cell
         case .movieAndDrama, .paramountNew, .programCollection, .favoriteMovies, .animations:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieDramaCollectionViewCell.className, for: indexPath) as? MovieDramaCollectionViewCell else { return UICollectionViewCell() }
+            let cell = collectionView.dequeueReusableCell(type: MovieDramaCollectionViewCell.self, forIndexPath: indexPath)
             cell.configureCell(content: viewModel.contentDummy[indexPath.item])
             return cell
         }

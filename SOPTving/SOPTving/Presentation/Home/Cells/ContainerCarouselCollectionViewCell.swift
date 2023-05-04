@@ -143,8 +143,7 @@ extension ContainerCarouselCollectionViewCell: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CarouselCollectionViewCell.className, for: indexPath) as? CarouselCollectionViewCell
-        else { return UICollectionViewCell() }
+        let cell = collectionView.dequeueReusableCell(type: CarouselCollectionViewCell.self, forIndexPath: indexPath)
         cell.configureCarouselCell(poster: posters[indexPath.item])
         return cell
     }

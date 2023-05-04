@@ -87,12 +87,7 @@ extension MyPageViewController: UITableViewDelegate {
 
 extension MyPageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView
-            .dequeueReusableCell(
-                withIdentifier: MyPageTableViewCell.className,
-                for: indexPath)
-                as? MyPageTableViewCell
-        else { return UITableViewCell() }
+        let cell = tableView.dequeueReusableCell(withType: MyPageTableViewCell.self, for: indexPath)
 
         cell.configCell(
             title: viewModel.myPageList[indexPath.section][indexPath.item]
