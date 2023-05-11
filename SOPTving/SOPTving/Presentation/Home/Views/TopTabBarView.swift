@@ -11,34 +11,34 @@ protocol TopTabBarViewProtocol: AnyObject {
     func moveToTargetViewController(index: Int)
 }
 
-@frozen
-enum TopTab: String, CaseIterable {
-    case home = "홈"
-    case live = "실시간"
-    case tvProgram = "TV프로그램"
-    case movie = "영화"
-    case paramount = "파라마운트+"
-    case kids = "키즈"
+final class TopTabBarView: BaseView {
 
-    var viewController: UIViewController {
-        switch self {
-        case .home:
-            return HomeViewController(viewModel: MainHomeViewModel())
-        case .live:
-            return LiveChannelViewController()
-        case .tvProgram:
-            return TVProgramViewController()
-        case .movie:
-            return MovieViewController()
-        case .paramount:
-            return ParamountViewController()
-        case .kids:
-            return KidsViewController()
+    @frozen
+    enum TopTab: String, CaseIterable {
+        case home = "홈"
+        case live = "실시간"
+        case tvProgram = "TV프로그램"
+        case movie = "영화"
+        case paramount = "파라마운트+"
+        case kids = "키즈"
+
+        var viewController: UIViewController {
+            switch self {
+            case .home:
+                return ModuleFactory.shared.makeHomeViewController()
+            case .live:
+                return LiveChannelViewController()
+            case .tvProgram:
+                return TVProgramViewController()
+            case .movie:
+                return MovieViewController()
+            case .paramount:
+                return ParamountViewController()
+            case .kids:
+                return KidsViewController()
+            }
         }
     }
-}
-
-final class TopTabBarView: BaseView {
 
     private var targetIndex: Int = 0 {
         didSet {

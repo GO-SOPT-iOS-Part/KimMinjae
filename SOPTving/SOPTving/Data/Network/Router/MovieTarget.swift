@@ -6,3 +6,34 @@
 //
 
 import Foundation
+
+import Alamofire
+
+enum MovieTarget {
+    case getPopularMovie(_ dto: PopularMovieRequestDTO)
+}
+
+extension MovieTarget: TargetType {
+
+    var method: HTTPMethod {
+        switch self {
+        case .getPopularMovie:
+            return .get
+        }
+    }
+
+    var path: String {
+        switch self {
+        case .getPopularMovie(_):
+            return "/popular"
+        }
+    }
+
+    var parameters: RequestParams {
+        switch self {
+        case .getPopularMovie(let dto):
+            return .query(dto)
+        }
+    }
+
+}

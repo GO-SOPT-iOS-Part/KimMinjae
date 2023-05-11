@@ -7,15 +7,15 @@
 
 import Foundation
 
-protocol MainHomeViewModelInput {
+protocol HomeViewModelInput {
     func viewWillAppear()
 }
 
-protocol MainHomeViewModelOutput {
+protocol HomeViewModelOutput {
     var moviesFetched: (([Movie]?) -> Void)? { get set }
 }
 
-protocol HomeViewModel: MainHomeViewModelInput, MainHomeViewModelOutput {}
+protocol HomeViewModel: HomeViewModelInput, HomeViewModelOutput {}
 
 
 final class DefaultMainHomeViewModel: HomeViewModel {

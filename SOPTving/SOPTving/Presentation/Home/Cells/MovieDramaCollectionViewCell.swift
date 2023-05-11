@@ -29,6 +29,10 @@ final class MovieDramaCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func prepareForReuse() {
+        self.posterImageView.image = nil
+    }
+
     private func setStyle() {
         contentView.backgroundColor = .tvingBlack
     }
@@ -42,14 +46,16 @@ final class MovieDramaCollectionViewCell: UICollectionViewCell {
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.leading.equalTo(posterImageView)
+            make.leading.trailing.equalTo(posterImageView)
             make.top.equalTo(posterImageView.snp.bottom).offset(3)
         }
     }
 
-    func configureCell(content: Content) {
-        posterImageView.image = content.image
-        titleLabel.text = content.title
+    func configureCell(movie: Movie) {
+        movie.posterImagePath.downloadImageWithURLString(completion: { image in
+            self.posterImageView.image = image
+        })
+        titleLabel.text = movie.title
     }
 
 }

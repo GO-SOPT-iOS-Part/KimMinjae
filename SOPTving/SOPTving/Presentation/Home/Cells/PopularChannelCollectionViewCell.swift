@@ -72,15 +72,16 @@ final class PopularChannelCollectionViewCell: UICollectionViewCell {
         stackView.snp.makeConstraints { make in
             make.top.equalTo(rankingLabel)
             make.leading.equalTo(rankingLabel.snp.trailing).offset(4)
+            make.trailing.equalToSuperview()
 //            make.bottom.equalToSuperview()
         }
     }
 
-    func configureCell(rank: Int, channel: Channel) {
+    func configureCell(rank: Int, channel: Movie) {
         rankingLabel.text = "\(rank)"
-        channelNameLabel.text = channel.channelName
-        descriptionLabel.text = channel.descriptionName
-        ratingLabel.text = "\(channel.rating)%"
+        channelNameLabel.text = channel.title
+        descriptionLabel.text = "테스트"
+        ratingLabel.text = "37.3%"
     }
 
 }

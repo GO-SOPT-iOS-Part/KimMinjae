@@ -9,9 +9,9 @@ import UIKit
 
 import Kingfisher
 
-extension NSObject {
-    func downloadImage(from urlString: String, completion: @escaping (UIImage?) -> Void) {
-        guard let url = URL(string: urlString) else {
+extension String {
+    func downloadImageWithURLString(completion: @escaping (UIImage?) -> Void) {
+        guard let url = URL(string: self) else {
             return completion(nil)
         }
 

@@ -6,3 +6,18 @@
 //
 
 import Foundation
+
+struct PopularMovieRequestDTO: Encodable {
+    let apiKey: String
+    let page: Int?
+    let language: String?
+
+    enum CodingKeys: String, CodingKey {
+        case apiKey = "api_key"
+        case page, language
+    }
+}
+
+enum Language {
+    static let english = "en-US"
+}

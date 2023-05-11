@@ -11,6 +11,7 @@ protocol ModuleFactoryProtocol {
     func makeLoginViewController() -> UIViewController
     func makeWelcomeViewController() -> UIViewController
     func makeMyPageViewController() -> UIViewController
+    func makeMainHomeViewController() -> UIViewController
     func makeHomeViewController() -> UIViewController
 }
 
@@ -36,9 +37,16 @@ final class ModuleFactory: ModuleFactoryProtocol {
         return viewController
     }
 
+    func makeMainHomeViewController() -> UIViewController {
+        let viewController = MainHomeViewController()
+        return viewController
+    }
+
     func makeHomeViewController() -> UIViewController {
-        let viewModel = MainHomeViewModel()
-        let viewController = MainHomeViewController(viewModel: viewModel)
+        let repository = DefaultMovieRespository(networkService: BaseService.shared)
+        let useCase = DefaultMovieUseCase(repository: repository)
+        let viewModel = DefaultMainHomeViewModel(useCase: useCase)
+        let viewController = HomeViewController(viewModel: viewModel)
         return viewController
     }
 }
