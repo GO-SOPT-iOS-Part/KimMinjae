@@ -16,7 +16,15 @@ final class HomeViewController: BaseViewController {
 
     // MARK: - Properties
 
-    private var viewModel: MainHomeViewModel
+    private var viewModel: HomeViewModel
+
+    private var posterCarouselImages = Poster.dummy()
+
+    private var movies: [Movie] = [] {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
 
     weak var delegate: HomeViewControllerProtocol?
 
@@ -50,11 +58,22 @@ final class HomeViewController: BaseViewController {
                 return 38
             }
         }
+
+        var headerText: String {
+            switch self {
+            case .liveChannel:
+                return Headers.popularLiveChannel
+            case .movieAndDrama, .paramountNew, .favoriteMovies, .programCollection, .animations:
+                return Headers.mustsee
+            case .imageBanner, .carousel:
+                return Headers.empty
+            }
+        }
     }
 
     // MARK: - View Life Cycle
 
-    init(viewModel: MainHomeViewModel) {
+    init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -63,6 +82,12 @@ final class HomeViewController: BaseViewController {
         super.viewDidLoad()
         setDelegate()
         makeArrayForCarouselView()
+        bind()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.viewWillAppear()
     }
 
     private func setDelegate() {
@@ -99,7 +124,16 @@ final class HomeViewController: BaseViewController {
 
 extension HomeViewController {
     func makeArrayForCarouselView() {
-        self.viewModel.posterCarouselImages.insertElementsBackAndForward()
+        self.posterCarouselImages.insertElementsBackAndForward()
+    }
+
+    private func bind() {
+        viewModel.moviesFetched = { movies in
+            if let movies {
+                self.movies = movies
+            }
+
+        }
     }
 }
 
@@ -245,7 +279,8 @@ extension HomeViewController: UICollectionViewDataSource {
 
         let header = collectionView.dequeueHeaderView(type: MainSectionHeaderView.self, forIndexPath: indexPath)
 
-        header.configHeaderView(text: viewModel.headerText[indexPath.section])
+        guard let sectionType = Section(rawValue: indexPath.section) else { return UICollectionReusableView() }
+        header.configHeaderView(text: sectionType.headerText)
         return header
     }
 
@@ -255,7 +290,7 @@ extension HomeViewController: UICollectionViewDataSource {
         if sectionType == .imageBanner || sectionType == .carousel {
             return 1
         }
-        return viewModel.contentDummy.count
+        return movies.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -267,18 +302,18 @@ extension HomeViewController: UICollectionViewDataSource {
         switch sectionType {
         case .carousel:
             let cell = collectionView.dequeueReusableCell(type: ContainerCarouselCollectionViewCell.self, forIndexPath: indexPath)
-            cell.initCell(posters: viewModel.posterCarouselImages)
+            cell.initCell(posters: posterCarouselImages)
             return cell
         case .imageBanner:
             let cell = collectionView.dequeueReusableCell(type: ImageBannerCollectionViewCell.self, forIndexPath: indexPath)
             return cell
         case .liveChannel:
             let cell = collectionView.dequeueReusableCell(type: PopularChannelCollectionViewCell.self, forIndexPath: indexPath)
-            cell.configureCell(rank: indexPath.item + 1, channel: viewModel.channelDummy[indexPath.item])
+            cell.configureCell(rank: indexPath.item + 1, channel: movies[indexPath.item])
             return cell
         case .movieAndDrama, .paramountNew, .programCollection, .favoriteMovies, .animations:
             let cell = collectionView.dequeueReusableCell(type: MovieDramaCollectionViewCell.self, forIndexPath: indexPath)
-            cell.configureCell(content: viewModel.contentDummy[indexPath.item])
+            cell.configureCell(movie: movies[indexPath.item])
             return cell
         }
     }

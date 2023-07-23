@@ -11,8 +11,6 @@ final class MainHomeViewController: BaseViewController {
 
     // MARK: - Properties
 
-    private let viewModel: MainHomeViewModel
-
     private var currentPageIndex = 0 {
         didSet {
             setFirstVCinPageViewController(currIndex: oldValue, targetIndex: currentPageIndex)
@@ -39,21 +37,12 @@ final class MainHomeViewController: BaseViewController {
         transitionStyle: .scroll,
         navigationOrientation: .horizontal)
 
-    private lazy var controllers: [UIViewController] = TopTab.allCases.map({ $0.viewController })
+    private lazy var controllers: [UIViewController] = TopTabBarView.TopTab.allCases.map({ $0.viewController })
 
     // MARK: - View Life Cycle
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
-    }
-
-    init(viewModel: MainHomeViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 
     override func viewDidLoad() {
