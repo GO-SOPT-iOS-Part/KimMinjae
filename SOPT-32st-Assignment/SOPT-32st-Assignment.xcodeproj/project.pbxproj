@@ -16,6 +16,7 @@
 		B598C03E29DF52D900FDEF04 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598C03D29DF52D900FDEF04 /* Observable.swift */; };
 		B598C04129DF58A000FDEF04 /* firstViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598C04029DF58A000FDEF04 /* firstViewModel.swift */; };
 		B598C04629DF6FEF00FDEF04 /* ModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598C04529DF6FEF00FDEF04 /* ModuleFactory.swift */; };
+		B5ACF6DE2B2188B2006D7641 /* .swiftlint in Resources */ = {isa = PBXBuildFile; fileRef = B5ACF6DD2B2188B2006D7641 /* .swiftlint */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		B598C03D29DF52D900FDEF04 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		B598C04029DF58A000FDEF04 /* firstViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = firstViewModel.swift; sourceTree = "<group>"; };
 		B598C04529DF6FEF00FDEF04 /* ModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFactory.swift; sourceTree = "<group>"; };
+		B5ACF6DD2B2188B2006D7641 /* .swiftlint */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +48,7 @@
 		B598C01B29DF4D8200FDEF04 = {
 			isa = PBXGroup;
 			children = (
+				B5ACF6DD2B2188B2006D7641 /* .swiftlint */,
 				B598C02629DF4D8200FDEF04 /* SOPT-32st-Assignment */,
 				B598C02529DF4D8200FDEF04 /* Products */,
 			);
@@ -182,6 +185,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5ACF6DE2B2188B2006D7641 /* .swiftlint in Resources */,
 				B598C03429DF4D8400FDEF04 /* LaunchScreen.storyboard in Resources */,
 				B598C03129DF4D8400FDEF04 /* Assets.xcassets in Resources */,
 			);

@@ -10,7 +10,7 @@ import UIKit
 final class SecondViewController: UIViewController {
 
     // MARK: - Properties
-    private var name = ""
+    private var name = "minjae"
 
     // MARK: - UI Components
 
