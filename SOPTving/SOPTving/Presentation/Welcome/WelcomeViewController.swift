@@ -56,6 +56,9 @@ final class WelcomeViewController: UIViewController {
 
 private extension WelcomeViewController {
     func setNavigationbar() {
+        
+        
+        
         self.navigationController?.navigationBar.isHidden = true
     }
 
