@@ -60,6 +60,9 @@ private extension WelcomeViewController {
     }
 
     func style() {
+        
+        
+        
         view.backgroundColor = .tvingBlack
     }
 
